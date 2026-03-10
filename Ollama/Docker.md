@@ -31,10 +31,9 @@
 >
 >Pega este código dentro:  
 >
->\# Usamos la imagen oficial de Ollama  
->`FROM ollama/ollama:latest`
->
->\# Arrancamos el servidor de ollama de fondo, esperamos 3 segundos y descargamos Llama 3  
+>`# Usamos la imagen oficial de Ollama`  
+>`FROM ollama/ollama:latest`     
+>`# Arrancamos el servidor de ollama de fondo, esperamos 3 segundos y descargamos Llama 3`    
 >`RUN nohup bash -c "ollama serve &" && sleep 3 && ollama pull llama3`
 >
 >Guarda y cierra (en nano es Ctrl+O, Enter, y luego Ctrl+X).
