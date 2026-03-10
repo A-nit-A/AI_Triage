@@ -51,7 +51,7 @@
 >
 >En la misma terminal, ejecuta:
 >
->> `docker build -t mi-ollama-llama3 .`
+>> `docker build -t ollama-llama3 .`
 >
 >(No te olvides del punto . al final, le indica a Docker que busque el archivo en la carpeta actual).
 
@@ -59,7 +59,7 @@
 >
 >Una vez termine, ya tienes la imagen en tu Linux Mint. Para llevártela a un PC con Windows u otro Linux, tenemos que exportarla a un archivo único (un .tar):
 >
->> `docker save -o imagen-llama3.tar mi-ollama-llama3`
+>> `docker save -o imagen-llama3.tar ollama-llama3`
 >
 >Esto creará un archivo llamado imagen-llama3.tar en tu carpeta (que pesará esos ~5.5 GB). Ese es el archivo que te puedes llevar en un pendrive.
 
@@ -79,39 +79,10 @@
 >
 >O conectando cualquier aplicación (como el cliente web Open-WebUI) al puerto 11434 de esa máquina.
 
-
-\# Exponemos el puerto por defecto
-EXPOSE 11434
-
-\# Truco para descargar el modelo durante la construcción de la imagen
-RUN nohup bash -c "ollama serve & sleep 5 && ollama pull llama3"
-
-\# Comando para iniciar el servidor al arrancar el contenedor
-ENTRYPOINT ["ollama", "serve"]
-
-Pasos para crearla y moverla:
-
-    Construye la imagen: docker build -t ollama-llama3 .
-
-    Guarda la imagen en un archivo: docker save ollama-llama3 > ollama-llama3.tar
-
-    En el otro equipo, cárgala: docker load < ollama-llama3.tar
-
-    Ejecuta: docker run -d --name ollama-ready -p 11434:11434 ollama-llama3
-
-
-
 Recuerda que si el ordenador de destino tiene una tarjeta gráfica NVIDIA, deberás añadir el parámetro --gpus all al hacer el docker run para que el modelo funcione de forma fluida. De lo contrario, usará solo el procesador (CPU) y será mucho más lento.
 
-¿Te gustaría que te ayude a preparar un archivo docker-compose.yml para gestionar esto de forma más automática?
 
-Sí, el sistema es compatible con ambos, pero hay un par de matices importantes sobre cómo interactúa Docker con el hardware dependiendo del sistema operativo.
-
-Aquí tienes el desglose de lo que necesitas saber para que funcione igual de bien en Windows que en Linux:
-1. Compatibilidad de la Imagen
-
-La imagen de Docker que construyas (el archivo .tar o la imagen en el registro) es agnóstica al sistema operativo. Puedes construirla en Linux y cargarla en Windows (o viceversa) sin problemas, siempre y cuando la arquitectura del procesador sea la misma (por ejemplo, ambos sean x86_64).
-2. El factor GPU (NVIDIA)
+El factor GPU (NVIDIA)
 
 Para que el modelo llama3 no vaya lento como una tortuga, querrás usar la tarjeta gráfica. Aquí es donde cambian los requisitos:
 
@@ -119,40 +90,141 @@ Para que el modelo llama3 no vaya lento como una tortuga, querrás usar la tarje
 
     En Windows: Necesitas tener instalado Docker Desktop y que esté configurado para usar el backend de WSL 2 (Windows Subsystem for Linux). Windows gestiona el paso de la GPU al contenedor de forma automática si los drivers están al día.
 
-3. Diferencias en las rutas de archivos
+Crear el archivo docker-compose.yml
 
-Si decides usar la Opción 2 (la de la carpeta externa/pendrive), ten cuidado con cómo escribes la ruta en la terminal:
+En el equipo destino (donde ya has cargado tu imagen .tar), crea un archivo llamado docker-compose.yml y pega este contenido:
+YAML
 
-    En Windows (PowerShell):
-    docker run -v C:\mi_carpeta\ollama:/root/.ollama ...
+version: '3.8'
 
-    En Linux/Bash:
-    docker run -v /home/usuario/ollama:/root/.ollama ...
+services:
+  ollama:
+    # Usamos exactamente el nombre de la imagen que te trajiste en el pendrive
+    image: ollama-llama3
+    container_name: ollama-local
+    ports:
+      - "11434:11434"
+    restart: unless-stopped
+    
+    # -------------------------------------------------------------
+    # ACELERACIÓN POR TARJETA GRÁFICA (GPU)
+    # Si el PC destino tiene una gráfica NVIDIA y tiene instalados 
+    # los drivers de NVIDIA Container Toolkit, quita el símbolo '#' 
+    # de las siguientes 6 líneas para que el modelo vaya a la velocidad de la luz:
+    # -------------------------------------------------------------
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
 
-4. Recomendación de Docker Compose
+2. Cómo levantarlo
 
-Para evitar líos de comandos distintos en cada equipo, lo ideal es usar un archivo docker-compose.yml. Este archivo centraliza la configuración:
+Una vez tengas el archivo guardado en una carpeta, abre la terminal (o el PowerShell si estás en el Windows destino) en esa misma ubicación y ejecuta:
+Bash
+
+docker compose up -d
+
+(El -d es para que se ejecute en segundo plano y te devuelva el control de la terminal).
+
+Con esto, el servidor de Ollama con Llama 3 ya estará corriendo en el puerto 11434 de ese ordenador, listo para recibir peticiones. Para apagarlo, solo tendrían que ejecutar docker compose down.
+
+
+¡Excelente elección! Al añadirle una interfaz gráfica, el uso del modelo pasa de ser una pantalla negra con texto a una experiencia exactamente igual a la de usar ChatGPT en el navegador.
+
+Aquí tienes el archivo docker-compose.yml actualizado. He configurado ambos servicios para que se hablen entre ellos automáticamente de forma interna.
+El archivo docker-compose.yml completo
+
+Sustituye el contenido de tu archivo por este:
 YAML
 
 services:
   ollama:
-    image: ollama-llama3:latest  # La imagen que creaste
+    image: mi-ollama-llama3
+    container_name: ollama-local
     ports:
       - "11434:11434"
+    restart: unless-stopped
+    # -------------------------------------------------------------
+    # ACELERACIÓN POR GPU (Descomentar si hay NVIDIA)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    # -------------------------------------------------------------
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - "3000:8080"
+    environment:
+      # Esto le dice a la interfaz cómo conectarse al contenedor de Ollama
+      - 'OLLAMA_BASE_URL=http://ollama:11434'
     volumes:
-      - ./ollama_data:/root/.ollama
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+      # Guarda el historial de chats y usuarios para no perderlos al reiniciar
+      - open-webui-data:/app/backend/data
+    restart: unless-stopped
+    depends_on:
+      - ollama
 
-Resumen de compatibilidad
-Componente	    Windows (WSL2)	            Linux
-Motor Docker	Docker Desktop	            Docker Engine / Portainer
-Acceso a GPU	Nativo                      vía WSL2	Requiere NVIDIA Container Toolkit
-Rendimiento	    Muy alto (casi nativo)	    Nativo
-Portabilidad	Total (archivo .tar)	    Total (archivo .tar)
+volumes:
+  open-webui-data:
 
+Cómo usarlo en el equipo destino
+
+    Abre la terminal en la carpeta donde tienes este docker-compose.yml y ejecuta:
+    Bash
+
+    docker compose up -d
+
+    Abre el navegador web en ese ordenador y entra en la dirección: http://localhost:3000
+
+    La primera vez que entres, te pedirá crear una cuenta de administrador (nombre, email y contraseña). Como todo se ejecuta localmente en tu ordenador, no necesitas un email real, es solo para crear tu usuario local.
+
+    Una vez dentro, verás un desplegable en la parte superior. Selecciona llama3 ¡y empieza a chatear!
+
+    Aquí tienes los pasos para descargar y empaquetar la interfaz gráfica, tal y como hicimos con Llama 3:
+1. Descargar y empaquetar Open WebUI (En tu Linux Mint)
+
+Abre la terminal en tu equipo original y ejecuta estos comandos uno por uno:
+Bash
+
+# 1. Descargamos la imagen oficial de Open WebUI desde internet
+docker pull ghcr.io/open-webui/open-webui:main
+
+# 2. La empaquetamos en un archivo .tar (esto creará un archivo de unos 1.5 GB)
+docker save -o open-webui.tar ghcr.io/open-webui/open-webui:main
+
+2. Preparar el pendrive (El "Kit" completo)
+
+Ahora tienes todo lo necesario. En tu pendrive debes copiar estos tres archivos:
+
+    imagen-llama3.tar (El modelo de Ollama que creamos al principio).
+
+    open-webui.tar (La interfaz gráfica que acabamos de empaquetar).
+
+    docker-compose.yml (El archivo de texto con la configuración de ambos).
+
+3. Instalarlo en el equipo destino (Windows o Linux)
+
+Cuando llegues al otro ordenador, conecta el pendrive, abre una terminal (o PowerShell en Windows) dentro de la carpeta del pendrive y ejecuta estos pasos:
+Bash
+
+# 1. Cargamos el modelo Llama 3 en el Docker de este equipo
+docker load -i imagen-llama3.tar
+
+# 2. Cargamos la interfaz gráfica
+docker load -i open-webui.tar
+
+# 3. Levantamos los dos servicios a la vez usando el archivo de configuración
+docker compose up -d
+
+¡Y ya está! Como las imágenes ya están cargadas en la memoria de Docker gracias a los archivos .tar, el comando docker compose las detectará instantáneamente y no intentará conectarse a internet para descargarlas.
+
+Solo tendrás que abrir el navegador en ese equipo, entrar a http://localhost:3000 y disfrutar de tu propia IA privada y portátil.
