@@ -1,22 +1,90 @@
 # USAR DOCKER PARA TENER LLAMA3 CORRIENDO EN LOCAL
 
+
+## INSTALAR DOCKER EN LINUX
+
+
+> Actualiza los repositorios  
+> `sudo apt update`  
+>
+> Instala Docker  
+> `sudo apt install docker.io -y`  
+>
+> Añade tu usuario al grupo "docker" para no tener que usar "sudo" todo el tiempo  
+> `sudo usermod -aG docker $USER`  
+
+**IMPORTANTE** Para que el último comando haga efecto, tienes que cerrar sesión en tu usuario de Linux Mint y volver a entrar (o reiniciar el equipo). Si no lo haces, Docker te dará un error de permisos.
+
+
 ## Crear una imagen personalizada (El modelo "dentro" del Docker)
 
-Esta es la mejor opción si quieres un único archivo (o imagen) que contenga todo. Al llevarte esta imagen a otro PC, el modelo ya estará allí.
 
-Para esto, crea un archivo llamado Dockerfile con el siguiente contenido:
-Dockerfile
+>CREAR EL "MOLDE" (DOCKERFILE) PARA TU IMAGEN
+>
+>Crea una carpeta "Llama3_Docker" y entra en ella 
+> 
+>`mkdir Llama3_Docker && cd Llama3_Docker`
+>
+>Crea un archivo llamado Dockerfile (sin ninguna extensión) usando un editor de texto de terminal como nano
+>
+>`nano Dockerfile`
+>
+>Pega este código dentro:  
+>
+>\# Usamos la imagen oficial de Ollama  
+>`FROM ollama/ollama:latest`
+>
+>\# Arrancamos el servidor de ollama de fondo, esperamos 3 segundos y descargamos Llama 3  
+>`RUN nohup bash -c "ollama serve &" && sleep 3 && ollama pull llama3`
+>
+>Guarda y cierra (en nano es Ctrl+O, Enter, y luego Ctrl+X).
 
-# Usamos la imagen oficial de Ollama
+>CONSTRUIR LA IMAGEN PERSONALIZADA  
+>
+>Ahora le decimos a Docker que lea ese archivo y construya la imagen. Esto tardará un rato, porque aquí es donde se va a descargar Llama 3 por única vez.
+>
+>En la misma terminal, ejecuta:
+>
+>`docker build -t mi-ollama-llama3 .`
+>
+>(No te olvides del punto . al final, le indica a Docker que busque el archivo en la carpeta actual).
+
+>CREAR UNA IMAGEN PARA LLEVARLA A OTRO PC
+>
+>Una vez termine, ya tienes la imagen en tu Linux Mint. Para llevártela a un PC con Windows u otro Linux, tenemos que exportarla a un archivo único (un .tar):
+>
+>`docker save -o imagen-llama3.tar mi-ollama-llama3`
+>
+>Esto creará un archivo llamado imagen-llama3.tar en tu carpeta (que pesará esos ~5.5 GB). Ese es el archivo que te puedes llevar en un pendrive.
+
+>CÓMO USARLA EN LOS OTROS EQUIPOS
+>
+>Abrir una terminal en la carpeta del pendrive y cargar la imagen:
+>
+>`docker load -i imagen-llama3.tar`
+>
+>Una vez cargada, solo tienen que ejecutarla con:
+>
+>`docker run -d -p 11434:11434 --name ollama mi-ollama-llama3`
+>
+>¡Y listo! Ya podrán usar Llama 3 al instante escribiendo 
+>
+>`docker exec -it ollama ollama run llama3`
+>
+>O conectando cualquier aplicación (como el cliente web Open-WebUI) al puerto 11434 de esa máquina.
+
+
+
+\# Usamos la imagen oficial de Ollama
 FROM ollama/ollama:latest
 
-# Exponemos el puerto por defecto
+\# Exponemos el puerto por defecto
 EXPOSE 11434
 
-# Truco para descargar el modelo durante la construcción de la imagen
+\# Truco para descargar el modelo durante la construcción de la imagen
 RUN nohup bash -c "ollama serve & sleep 5 && ollama pull llama3"
 
-# Comando para iniciar el servidor al arrancar el contenedor
+\# Comando para iniciar el servidor al arrancar el contenedor
 ENTRYPOINT ["ollama", "serve"]
 
 Pasos para crearla y moverla:
@@ -29,25 +97,7 @@ Pasos para crearla y moverla:
 
     Ejecuta: docker run -d --name ollama-ready -p 11434:11434 ollama-llama3
 
-## Usar un volumen externo (Carpeta en un USB/Disco)
 
-Si no quieres reconstruir la imagen cada vez que cambies de modelo, puedes guardar los modelos en una carpeta de tu disco duro (o un pendrive) y "conectarla" al Docker en cualquier ordenador.
-
-    Descarga el modelo una vez:
-    Bash
-
-    docker run -d -v ./mis_modelos:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-    docker exec -it ollama ollama pull llama3
-
-    Para llevarlo a otro PC:
-    Copia la carpeta ./mis_modelos al nuevo equipo y ejecuta el mismo comando apuntando a esa carpeta. Docker detectará que llama3 ya existe en esa ruta y no descargará nada.
-
-Comparativa rápida
-Característica	Imagen Personalizada (Opción 1)	Volumen Externo (Opción 2)
-Portabilidad	Un solo archivo .tar pesado.	Una carpeta con archivos sueltos.
-Facilidad	Solo haces docker run y listo.	Debes copiar la carpeta y mapear la ruta.
-Actualización	Debes crear una imagen nueva si quieres otro modelo.	Solo descargas el nuevo modelo a la carpeta.
-Nota importante sobre el hardware
 
 Recuerda que si el ordenador de destino tiene una tarjeta gráfica NVIDIA, deberás añadir el parámetro --gpus all al hacer el docker run para que el modelo funcione de forma fluida. De lo contrario, usará solo el procesador (CPU) y será mucho más lento.
 
