@@ -5,13 +5,16 @@
 
 
 > Actualiza los repositorios  
-> `sudo apt update`  
+>
+>> `sudo apt update`  
 >
 > Instala Docker  
-> `sudo apt install docker.io -y`  
+>
+>> `sudo apt install docker.io -y`  
 >
 > Añade tu usuario al grupo "docker" para no tener que usar "sudo" todo el tiempo  
-> `sudo usermod -aG docker $USER`  
+>
+>> `sudo usermod -aG docker $USER`  
 
 **IMPORTANTE** Para que el último comando haga efecto, tienes que cerrar sesión en tu usuario de Linux Mint y volver a entrar (o reiniciar el equipo). Si no lo haces, Docker te dará un error de permisos.
 
@@ -22,19 +25,23 @@
 >CREAR EL "MOLDE" (DOCKERFILE) PARA TU IMAGEN
 >
 >Crea una carpeta "Llama3_Docker" y entra en ella 
-> 
->`mkdir Llama3_Docker && cd Llama3_Docker`
+>
+>> `mkdir Llama3_Docker && cd Llama3_Docker`
 >
 >Crea un archivo llamado Dockerfile (sin ninguna extensión) usando un editor de texto de terminal como nano
 >
->`nano Dockerfile`
+>> `nano Dockerfile`
 >
 >Pega este código dentro:  
 >
->`# Usamos la imagen oficial de Ollama`  
->`FROM ollama/ollama:latest`     
->`# Arrancamos el servidor de ollama de fondo, esperamos 3 segundos y descargamos Llama 3`    
->`RUN nohup bash -c "ollama serve &" && sleep 3 && ollama pull llama3`
+>> `# Usamos la imagen oficial de Ollama`  
+>> `FROM ollama/ollama:latest`     
+>> `# Exponemos el puerto por defecto`  
+>> `EXPOSE 11434`  
+>> `# Truco para descargar el modelo durante la construcción de la imagen`  
+>> `RUN nohup bash -c "ollama serve & sleep 5 && ollama pull llama3"`  
+>> `# Comando para iniciar el servidor al arrancar el contenedor`  
+>> `ENTRYPOINT ["ollama", "serve"]`  
 >
 >Guarda y cierra (en nano es Ctrl+O, Enter, y luego Ctrl+X).
 
@@ -44,7 +51,7 @@
 >
 >En la misma terminal, ejecuta:
 >
->`docker build -t mi-ollama-llama3 .`
+>> `docker build -t mi-ollama-llama3 .`
 >
 >(No te olvides del punto . al final, le indica a Docker que busque el archivo en la carpeta actual).
 
@@ -52,7 +59,7 @@
 >
 >Una vez termine, ya tienes la imagen en tu Linux Mint. Para llevártela a un PC con Windows u otro Linux, tenemos que exportarla a un archivo único (un .tar):
 >
->`docker save -o imagen-llama3.tar mi-ollama-llama3`
+>> `docker save -o imagen-llama3.tar mi-ollama-llama3`
 >
 >Esto creará un archivo llamado imagen-llama3.tar en tu carpeta (que pesará esos ~5.5 GB). Ese es el archivo que te puedes llevar en un pendrive.
 
@@ -60,22 +67,18 @@
 >
 >Abrir una terminal en la carpeta del pendrive y cargar la imagen:
 >
->`docker load -i imagen-llama3.tar`
+>> `docker load -i imagen-llama3.tar`
 >
 >Una vez cargada, solo tienen que ejecutarla con:
 >
->`docker run -d -p 11434:11434 --name ollama mi-ollama-llama3`
+>> `docker run -d -p 11434:11434 --name ollama mi-ollama-llama3`
 >
 >¡Y listo! Ya podrán usar Llama 3 al instante escribiendo 
 >
->`docker exec -it ollama ollama run llama3`
+>> `docker exec -it ollama ollama run llama3`
 >
 >O conectando cualquier aplicación (como el cliente web Open-WebUI) al puerto 11434 de esa máquina.
 
-
-
-\# Usamos la imagen oficial de Ollama
-FROM ollama/ollama:latest
 
 \# Exponemos el puerto por defecto
 EXPOSE 11434
