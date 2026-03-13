@@ -88,9 +88,8 @@ Aquí tienes todo lo necesario para ejecutar la Fase 2. He optimizado el código
 1. Preparar las librerías necesarias
 
 Asegúrate de que tus alumnos instalan estos paquetes en su entorno virtual. En su terminal, deben ejecutar:
-Bash
 
-pip install langchain langchain-chroma langchain-huggingface langchain-text-splitters sentence-transformers
+>`pip install langchain langchain-chroma langchain-huggingface langchain-text-splitters sentence-transformers`
 
 2. Crear el archivo de texto (La "memoria" de la empresa)
 

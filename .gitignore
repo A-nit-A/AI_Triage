@@ -1,0 +1,33 @@
+# ── Entorno virtual ──────────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# ── Jupyter Notebooks ────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Base de datos ChromaDB (generada localmente) ──────────────────────────────
+**/chroma_db/
+
+# ── Archivos generados por el agente ─────────────────────────────────────────
+correos_escalados.csv
+
+# ── Modelos de HuggingFace (caché local, pueden ser muy grandes) ─────────────
+~/.cache/huggingface/
+
+# ── Sistema operativo ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDEs y editores ───────────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
