@@ -16,7 +16,7 @@ Ollama sirve para que cualquier usuario o desarrollador pueda tener su propia IA
 ## Características y ventajas principales
 
 * **Facilidad de uso:** Se instala como cualquier otro programa y se utiliza mediante comandos muy sencillos en la terminal (por ejemplo, ejecutando `ollama run llama3` ya tienes un chat funcionando).
-* **Catálogo de modelos:** Permite descargar los modelos de código abierto más avanzados y populares del momento, como **Llama 3** (de Meta), **Mistral**, **Gemma** (de Google) o **Phi** (de Microsoft).
+* **Catálogo de modelos:** Permite descargar los modelos de código abierto más avanzados y populares del momento, como **Llama 3** (de Meta), **Mistral**, **Gemma** (de Google), **Qwen** o **Phi** (de Microsoft).
 * **Integración y API:** Ollama incluye una API REST, lo que significa que puedes conectar la IA local a otras aplicaciones, interfaces gráficas (como Open WebUI) o extensiones de código en programas como Visual Studio Code.
 * **Optimización de hardware:** Está diseñado para aprovechar al máximo los recursos de tu ordenador, usando tanto el procesador (CPU) como la tarjeta gráfica (GPU) para que las respuestas sean lo más rápidas posible.
 
@@ -31,21 +31,22 @@ Ollama destaca precisamente por tener una curva de aprendizaje mínima. Sus siti
 
 - Sitio web principal: ollama.com
 
-    Por qué usarlo: Tiene el botón de descarga directa para Windows, macOS y Linux.Es literalmente un instalador de "Siguiente > Siguiente".
+        Tiene el botón de descarga directa para Windows, macOS y Linux.Es literalmente un instalador de "Siguiente > Siguiente".
 
 - El Repositorio de GitHub: github.com/ollama/ollama
 
-        Por qué usarlo: El archivo Readme (la página principal del repositorio) es un tutorial en sí mismo. Muestra los comandos básicos en la terminal (ej. ollama run llama3), cómo gestionar modelos y cómo usar su API local.
+        El archivo Readme (la página principal del repositorio) es un tutorial en sí mismo. Muestra los comandos básicos en la terminal (ej. ollama run llama3), cómo gestionar modelos y cómo usar su API local.
 
 - La Biblioteca de Modelos: ollama.com/library
 
-        Por qué usarlo: Aquí los alumnos pueden buscar qué IA quieren instalar (Llama 3, Mistral, Phi-3). Muestra los requisitos de RAM y el comando exacto para descargar cada uno.
+        Aquí los alumnos pueden buscar qué IA quieren instalar (Llama 3, Mistral, Phi-3). Muestra los requisitos de RAM y el comando exacto para descargar cada uno.
 
-2. Plataformas de Tutoriales Escritos (Para seguir a su ritmo)
+2. Plataformas de Tutoriales Escritos (Para seguir a tu ritmo)
 
-Para los alumnos que prefieren leer tutoriales paso a paso con capturas de pantalla, estas plataformas son ideales:
 
-    Medium.com (Búsqueda recomendada: "Ollama tutorial español"): * Medium está lleno de artículos de la comunidad tecnológica. Hay excelentes guías que explican no solo la instalación, sino también la integración con Python (que es justo lo que haréis en clase).
+    Medium.com (Búsqueda recomendada: 
+
+        "Ollama tutorial español"): * Medium está lleno de artículos de la comunidad tecnológica. Hay excelentes guías que explican no solo la instalación, sino también la integración con Python (que es justo lo que haréis en clase).
 
     Dev.to (Etiqueta: #ollama):
 
@@ -53,10 +54,10 @@ Para los alumnos que prefieren leer tutoriales paso a paso con capturas de panta
 
 3. Videotutoriales en YouTube (Ideales para lo visual)
 
-A veces, ver a alguien abriendo la terminal y ejecutando los comandos es la forma más rápida de perderle el miedo. Te recomiendo buscar y filtrar videos de estos perfiles:
+Se recomiendo buscar y filtrar videos de estos perfiles:
 
     Canales de divulgación IA (Ej. DotCSV o Carlos Santana): Aunque suelen hacer divulgación general, a menudo publican tutoriales sobre cómo correr modelos en local.
 
     Canales de programación y DevOps (Ej. Pelado Nerd): Son excelentes para explicar qué pasa "por debajo" cuando instalas herramientas en la terminal.
 
-    Término de búsqueda recomendado para tus alumnos: "Cómo instalar Ollama Windows/Mac" o "Primeros pasos con Ollama y Python". Los videos de menos de 10 minutos suelen ser los más efectivos.
+    "Cómo instalar Ollama Windows/Mac" o "Primeros pasos con Ollama y Python". Los videos de menos de 10 minutos suelen ser los más efectivos.

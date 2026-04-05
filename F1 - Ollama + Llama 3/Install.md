@@ -165,9 +165,6 @@ Si vas a usar estos botones manuales, lo ideal es evitar que Ollama arranque sol
 
 ---
 
-¿Te gustaría que te indique cómo puedes personalizar el icono de estos accesos directos para que se vean mejor en tu escritorio, o prefieres seguir con la instalación de la interfaz gráfica que mencionamos antes?
-
-
 **Nota sobre el rendimiento:** Para que la versión estándar de Llama 3 funcione con fluidez, lo ideal es tener al menos **8 GB de memoria RAM** (recomendable 16 GB). Si tienes una tarjeta gráfica dedicada (NVIDIA o AMD), Ollama la detectará automáticamente para generar las respuestas mucho más rápido.
 
 
