@@ -98,9 +98,10 @@ def obtener_modelo(model_name_fallido: str) -> str | None:
         return nuevo_modelo
 
 # Crear la base de datos
-def crear_base_datos(chunks, embeddings_model):
+def crear_base_datos(chunks, embeddings_model, script_dir=None):
     # Directorio donde se persistirá la base de datos
-    DIRECTORIO_DB = "./chroma_db"
+    base = script_dir if script_dir else os.path.dirname(os.path.abspath(__file__))
+    DIRECTORIO_DB = os.path.join(base, "chroma_db")
 
     # Si ya existe una base de datos previa, la eliminamos para empezar limpio
     if os.path.exists(DIRECTORIO_DB):
@@ -139,7 +140,7 @@ def main():
     # Parseo de argumentos
     parser = argparse.ArgumentParser(
         prog="rag.py",
-        description="Sistema RAG: indexa un documento y permite hacer preguntas sobre él.",
+        description="Sistema RAG: indexa un documento y crea la base de datos vectorial para usar con el ajente.",
         formatter_class=argparse.RawTextHelpFormatter
     )
     parser.add_argument(
@@ -156,7 +157,8 @@ def main():
     )
     args = parser.parse_args()
 
-    ruta_fichero = args.fichero
+    script_dir   = os.path.dirname(os.path.abspath(__file__))
+    ruta_fichero = os.path.join(script_dir, args.fichero)
     model_name   = args.modelo
     print(f"Ruta del fichero: {ruta_fichero}")
     print(f"Modelo: {model_name}")
@@ -189,7 +191,7 @@ def main():
     print(f"Modelo '{model_name}' listo.")
 
     # Crear la base de datos
-    vectorstore = crear_base_datos(chunks, embeddings_model)
+    vectorstore = crear_base_datos(chunks, embeddings_model, script_dir)
 
     if vectorstore is None:
         sys.exit(2)
