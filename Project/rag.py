@@ -1,3 +1,26 @@
+# rag.py
+# Construcción de la Base de Conocimiento RAG — TechPyme
+# =======================================================
+
+"""
+Lee un fichero de texto (FAQs), lo divide en fragmentos, los vectoriza con un
+modelo de embeddings de HuggingFace y persiste la base de datos vectorial en
+la carpeta chroma_db/. También guarda el nombre del modelo usado en
+chroma_db/embedding_model.txt para que agent.py pueda cargarlo automáticamente.
+
+Requisitos previos
+------------------
+1. Fichero de texto con los documentos a indexar (por defecto: faqs.txt)
+2. Conexión a internet en la primera ejecución para descargar el modelo de embeddings
+
+Uso
+---
+    python rag.py                                # usa faqs.txt y el modelo por defecto
+    python rag.py -f ruta/al/fichero.txt         # fichero alternativo
+    python rag.py -m nombre-del-modelo           # modelo de embeddings alternativo
+    python rag.py -f docs.txt -m all-MiniLM-L6-v2
+"""
+
 import os
 import sys
 import shutil
@@ -98,7 +121,7 @@ def obtener_modelo(model_name_fallido: str) -> str | None:
         return nuevo_modelo
 
 # Crear la base de datos
-def crear_base_datos(chunks, embeddings_model, script_dir=None):
+def crear_base_datos(chunks, embeddings_model, model_name, script_dir=None):
     # Directorio donde se persistirá la base de datos
     base = script_dir if script_dir else os.path.dirname(os.path.abspath(__file__))
     DIRECTORIO_DB = os.path.join(base, "chroma_db")
@@ -123,6 +146,12 @@ def crear_base_datos(chunks, embeddings_model, script_dir=None):
         print(f"")
         print(f"Base de conocimiento creada y guardada en la carpeta '{DIRECTORIO_DB}'.")
         print(f"Fragmentos indexados: {vectorstore._collection.count()}")
+
+        # Guardamos el nombre del modelo de embeddings para que agent.py pueda cargarlo
+        modelo_txt = os.path.join(DIRECTORIO_DB, "embedding_model.txt")
+        with open(modelo_txt, "w", encoding="utf-8") as f:
+            f.write(model_name)
+        print(f"Modelo de embeddings guardado en '{modelo_txt}'.")
 
         # Verificamos que la carpeta existe en disco
         if os.path.exists(DIRECTORIO_DB):
@@ -191,7 +220,7 @@ def main():
     print(f"Modelo '{model_name}' listo.")
 
     # Crear la base de datos
-    vectorstore = crear_base_datos(chunks, embeddings_model, script_dir)
+    vectorstore = crear_base_datos(chunks, embeddings_model, model_name, script_dir)
 
     if vectorstore is None:
         sys.exit(2)

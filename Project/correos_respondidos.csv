@@ -1,0 +1,27 @@
+timestamp,id,remitente,asunto,cuerpo,respuesta
+2026-04-09 19:31:44,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","El equipo de TechPyme
+Hola, gracias por contactar con nosotros. Tu pedido será enviado por envío estándar y costará 4,99 euros. Llegará a Madrid en aproximadamente 48-72 horas laborables. Gracias por tu paciencia. Un saludo."
+2026-04-09 19:33:32,4,marta@email.com,Horario de atención,"Buenos días, ¿podéis decirme cuál es vuestro horario de atención al cliente? Quería llamaros esta tarde.","El horario de atención al cliente de TechPyme es de lunes a viernes, de 9:00 a 18:00 horas."
+2026-04-09 19:38:48,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","Hola!
+
+Gracias por contactarnos. Como tu pedido tiene un importe igual o superior a 50 euros, el envío es completamente gratuito. En cuanto al plazo de entrega, nuestros envíos estándar tardan entre 48 y 72 horas laborables en llegar a la península ibérica, incluyendo Madrid.
+
+Esperamos que tu pedido llegue pronto. ¡Si tienes alguna otra pregunta, no dudes en hacérmelo saber!
+
+Atentamente,
+El equipo de TechPyme"
+2026-04-09 19:42:41,3,pedro@email.com,Problema técnico con router,"Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?","Buenas tardes,
+
+Lo sentimos mucho que estés experimentando problemas con el router. Como no es un producto de nuestra tienda, no podemos brindarte soporte técnico directo. Sin embargo, recomendamos que contactes con el proveedor del producto o con Amazon, ya que ellos pueden ayudarte a resolver el problema.
+
+Si necesitas ayuda adicional, puedes contactar con nuestro equipo de soporte técnico a través de soporte@techpyme.es con el número de pedido y una descripción del problema. Esperamos poder ayudarte en lo posible.
+
+Atentamente,
+El equipo de TechPyme"
+2026-04-09 19:44:49,4,marta@email.com,Horario de atención,"Buenos días, ¿podéis decirme cuál es vuestro horario de atención al cliente? Quería llamaros esta tarde.","Buenos días!
+
+Nuestro horario de atención al cliente es de lunes a viernes, de 9:00 a 18:00 horas. Lamentablemente, los sábados, domingos y festivos nuestro servicio de atención al cliente está cerrado.
+
+Esperamos poder atenderte en el horario laborable. ¡Hasta luego!
+
+El equipo de TechPyme"

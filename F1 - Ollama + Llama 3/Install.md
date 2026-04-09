@@ -165,7 +165,38 @@ Si vas a usar estos botones manuales, lo ideal es evitar que Ollama arranque sol
 
 ---
 
-**Nota sobre el rendimiento:** Para que la versión estándar de Llama 3 funcione con fluidez, lo ideal es tener al menos **8 GB de memoria RAM** (recomendable 16 GB). Si tienes una tarjeta gráfica dedicada (NVIDIA o AMD), Ollama la detectará automáticamente para generar las respuestas mucho más rápido.
+## Nota sobre el rendimiento
+
+Para que la versión estándar de Llama 3 funcione con fluidez, lo ideal es tener al menos **8 GB de memoria RAM** (recomendable 16 GB). Si tienes una tarjeta gráfica dedicada (NVIDIA o AMD), Ollama la detectará automáticamente para generar las respuestas mucho más rápido.
+
+Se pede utilizar un modelo más ligero si no se dispone de los recursos necesarios cmo por ejemplo qwen2.5:3b. Para ello, se puede utilizar el siguiente comando:
+
+> ollama run qwen2.5:3b
+
+- Se descargará aproximadamente 1.9 GB (que es el tamaño del modelo cuantizado para 3B).
+
+- Se verificará la integridad del archivo.
+
+- Y por último levantará un chat interactivo inmediatamente para que puedas probarlo.
+
+**Comandos adicionales**
+
+- Ver modelos instalados: Si quieres ver cuánto espacio ocupa o qué otros modelos tienes.
+
+   > ollama list
+
+- Borrar modelos sobrantes: Para liberar RAM y espacio en disco.
+
+   > ollama rm llama3 (o el nombre exacto que aparezca en tu lista).
+
+- Actualizar: Los modelos reciben mejoras frecuentemente. 
+
+   >  ollama pull qwen2.5:3b   
+
+
+
+
+
 
 
 
