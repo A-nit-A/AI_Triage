@@ -169,7 +169,9 @@ def cargar_rag(modelo: str = MODELO, prompt_file: str = SYSTEM_PROMPT_FILE):
     )
     print("Cadena RAG construida. El agente está listo.")
     print(f"correo  →  [ChromaDB retriever]  →  [{modelo}]  →  decisión\n")
-
+    print("RAG Chain: ", rag_chain)
+    print("Instrucciones del agente: ", instrucciones_agente)
+    print("\n")
     return rag_chain
 
 
