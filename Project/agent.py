@@ -27,6 +27,13 @@ import subprocess
 import argparse
 from datetime import datetime
 
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
+from langchain_ollama import ChatOllama
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
+
 # ─────────────────────────────────────────────────────────────────
 #  Constantes
 # ─────────────────────────────────────────────────────────────────
@@ -104,12 +111,6 @@ def cargar_system_prompt(ruta: str) -> str:
 # ─────────────────────────────────────────────────────────────────
 def cargar_rag(modelo: str = MODELO, prompt_file: str = SYSTEM_PROMPT_FILE):
     """Devuelve una tupla (retriever, cadena_rag)."""
-    from langchain_huggingface import HuggingFaceEmbeddings
-    from langchain_chroma import Chroma
-    from langchain_ollama import ChatOllama
-    from langchain_core.prompts import ChatPromptTemplate
-    from langchain_core.runnables import RunnablePassthrough
-    from langchain_core.output_parsers import StrOutputParser
 
     # ── 3a. Embeddings ──────────────────────────────────────────
     if not os.path.exists(DIRECTORIO_DB):
@@ -155,7 +156,9 @@ def cargar_rag(modelo: str = MODELO, prompt_file: str = SYSTEM_PROMPT_FILE):
 
     # ── 3d. Cadena RAG (LCEL) ────────────────────────────────────
     def formatear_docs(docs):
-        return "\n\n".join(doc.page_content for doc in docs)
+        result = "\n\n".join(doc.page_content for doc in docs)
+        print("Context: ", result)
+        return result
 
     rag_chain = (
         {
@@ -169,9 +172,6 @@ def cargar_rag(modelo: str = MODELO, prompt_file: str = SYSTEM_PROMPT_FILE):
     )
     print("Cadena RAG construida. El agente está listo.")
     print(f"correo  →  [ChromaDB retriever]  →  [{modelo}]  →  decisión\n")
-    print("RAG Chain: ", rag_chain)
-    print("Instrucciones del agente: ", instrucciones_agente)
-    print("\n")
     return rag_chain
 
 
@@ -261,14 +261,6 @@ def _mostrar_csv(ruta: str, etiqueta: str, col_detalle: int) -> None:
         print("   Archivo no encontrado.")
 
 
-def mostrar_escalados() -> None:
-    _mostrar_csv(ARCHIVO_ESCALADOS, "escalados", col_detalle=4)
-
-
-def mostrar_respondidos() -> None:
-    _mostrar_csv(ARCHIVO_RESPONDIDOS, "respondidos automáticamente", col_detalle=5)
-
-
 # ─────────────────────────────────────────────────────────────────
 #  Punto de entrada
 # ─────────────────────────────────────────────────────────────────
@@ -302,9 +294,6 @@ def main() -> None:
     correos   = cargar_correos(args.correos)
     rag_chain = cargar_rag(modelo=args.modelo, prompt_file=args.prompt)
     ejecutar_triaje(correos, rag_chain)
-    mostrar_escalados()
-    mostrar_respondidos()
-
 
 if __name__ == "__main__":
     main()
