@@ -135,6 +135,7 @@ def cargar_rag(modelo: str = MODELO, prompt_file: str = SYSTEM_PROMPT_FILE):
         persist_directory=DIRECTORIO_DB,
         embedding_function=embeddings_model
     )
+    # k=2 significa que recuperará los 2 fragmentos más relevantes
     retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
     print(f"Base de conocimiento cargada. Fragmentos disponibles: {vectorstore._collection.count()}")
 
