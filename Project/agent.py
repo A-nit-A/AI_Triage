@@ -157,7 +157,7 @@ def cargar_rag(modelo: str = MODELO, prompt_file: str = SYSTEM_PROMPT_FILE):
     # ── 3d. Cadena RAG (LCEL) ────────────────────────────────────
     def formatear_docs(docs):
         result = "\n\n".join(doc.page_content for doc in docs)
-        print("Context: ", result)
+        # print("Context: ", result)
         return result
 
     rag_chain = (
@@ -294,6 +294,9 @@ def main() -> None:
     correos   = cargar_correos(args.correos)
     rag_chain = cargar_rag(modelo=args.modelo, prompt_file=args.prompt)
     ejecutar_triaje(correos, rag_chain)
+    # Mostrar resultados
+    # _mostrar_csv(ARCHIVO_ESCALADOS, "escalados", 5)
+    # _mostrar_csv(ARCHIVO_RESPONDIDOS, "respondidos", 5) 
 
 if __name__ == "__main__":
     main()
