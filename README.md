@@ -1,7 +1,8 @@
 # Agente de Triaje de Emails — Atención al Cliente TechPyme
 
-El problema: Una pequeña tienda online o clínica recibe decenas de correos y mensajes de WhatsApp al día. El dueño pierde 2 horas diarias respondiendo dudas básicas o derivando mensajes al departamento correcto.
-La misión del Agente: Actuar como el primer filtro inteligente.
+Una pequeña tienda online recibe decenas de correos al día. El dueño pierde 2 horas diarias respondiendo dudas básicas o derivando mensajes al departamento correcto.
+
+Nuestro cliente nos pide automatizar este proceso. Para ello crearémos un agente de triaje de emails que actuará como el primer filtro inteligente.
 
 ## Flujo del agente
 
