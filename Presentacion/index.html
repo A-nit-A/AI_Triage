@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad: Agente de Triaje de Emails - TechPyme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rag-step:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Header -->
+    <header class="bg-indigo-700 text-white py-12 px-6 shadow-lg">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-white/20 p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="16" x="2" y="4" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                </div>
+                <span class="text-indigo-200 font-semibold tracking-wider uppercase text-sm tracking-widest">Práctica:
+                    IA con Python</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">AI TRIAGE</h1>
+            <p class="text-xl text-indigo-100 max-w-2xl">
+                Construcción de un Agente de Triaje de Emails inteligente para TechPyme usando RAG y modelos locales.
+            </p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white border-b border-slate-200 z-50 px-4">
+        <div class="max-w-5xl mx-auto flex overflow-x-auto no-scrollbar py-1 space-x-8" id="tab-container">
+            <button onclick="showSection('introduccion')" id="nav-introduccion"
+                class="tab-button flex items-center gap-2 px-4 py-4 text-sm font-medium transition-all whitespace-nowrap tab-active">
+                Introducción
+            </button>
+            <button onclick="showSection('arquitectura')" id="nav-arquitectura"
+                class="tab-button flex items-center gap-2 px-4 py-4 text-sm font-medium transition-all whitespace-nowrap text-slate-500 hover:text-indigo-600">
+                Arquitectura
+            </button>
+            <button onclick="showSection('rag')" id="nav-rag"
+                class="tab-button flex items-center gap-2 px-4 py-4 text-sm font-medium transition-all whitespace-nowrap text-slate-500 hover:text-indigo-600">
+                RAG & Datos
+            </button>
+            <button onclick="showSection('agente')" id="nav-agente"
+                class="tab-button flex items-center gap-2 px-4 py-4 text-sm font-medium transition-all whitespace-nowrap text-slate-500 hover:text-indigo-600">
+                El Agente
+            </button>
+            <button onclick="showSection('rag2')" id="nav-rag2"
+                class="tab-button flex items-center gap-2 px-4 py-4 text-sm font-medium transition-all whitespace-nowrap text-slate-500 hover:text-indigo-600">
+                RAG 2.0
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto py-12 px-6">
+
+        <!-- SECCIÓN: INTRODUCCIÓN -->
+        <div id="section-introduccion" class="content-section animate-fade-in">
+            <h2 class="text-3xl font-bold mb-6 flex items-center gap-2 text-indigo-900">
+                El Problema de TechPyme
+            </h2>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+                <p class="text-lg leading-relaxed text-slate-700 mb-6">
+                    Una pequeña tienda online recibe decenas de correos al día. El dueño pierde <strong>2 horas
+                        diarias</strong> respondiendo dudas básicas o derivando mensajes al departamento correcto
+                    manualmente.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-red-50 p-6 rounded-xl border border-red-100">
+                        <h4 class="font-bold text-red-700 mb-2 italic">Pérdida de Tiempo</h4>
+                        <p class="text-sm text-red-600">Tareas repetitivas que no aportan valor estratégico al negocio.
+                        </p>
+                    </div>
+                    <div class="bg-orange-50 p-6 rounded-xl border border-orange-100">
+                        <h4 class="font-bold text-orange-700 mb-2 italic">Respuesta Lenta</h4>
+                        <p class="text-sm text-orange-600">El cliente espera demasiado tiempo por una duda sencilla de
+                            resolver.</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                        <h4 class="font-bold text-blue-700 mb-2 italic">Error Humano</h4>
+                        <p class="text-sm text-blue-600">Correos mal derivados o respuestas con información
+                            desactualizada.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold mb-6 text-slate-800">Objetivo de la Actividad</h2>
+            <p class="mb-6 text-slate-600">Programar un agente inteligente que actúe como filtro inicial, respondiendo
+                automáticamente usando las FAQs de la empresa o escalando a un humano si es necesario.</p>
+        </div>
+
+        <!-- SECCIÓN: ARQUITECTURA -->
+        <div id="section-arquitectura" class="content-section hidden animate-fade-in">
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-10">
+                <h2 class="text-3xl font-bold mb-6 text-indigo-900">Modelo de IA Local (Ollama)</h2>
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="flex-1">
+                        <p class="text-slate-700 mb-4 text-lg">
+                            Utilizaremos <strong>Ollama</strong> para ejecutar modelos potentes directamente en local.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3 text-slate-600">
+                                <span class="bg-green-100 text-green-700 p-1 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg></span>
+                                <span><strong>Privacidad:</strong> Los datos de los clientes nunca salen de tu
+                                    ordenador.</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-slate-600">
+                                <span class="bg-green-100 text-green-700 p-1 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg></span>
+                                <span><strong>Cero Costes:</strong> No pagamos por tokens a APIs externas (OpenAI,
+                                    Claude).</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-900 p-6 rounded-xl border border-slate-700 w-full md:w-80 shadow-2xl">
+                        <h4 class="font-bold text-indigo-400 mb-2 text-xs uppercase tracking-widest">Preparación
+                            terminal</h4>
+                        <div class="text-green-400 font-mono text-sm">
+                            <span class="text-slate-500"># Ejecutar modelo Llama 3</span><br>
+                            $ ollama run llama3
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECCIÓN: RAG -->
+        <div id="section-rag" class="content-section hidden animate-fade-in">
+            <h2 class="text-3xl font-bold mb-8 text-indigo-900">Creación del RAG</h2>
+
+            <!-- GRÁFICO DE CREACIÓN DEL RAG -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-10 overflow-x-auto">
+                <h3 class="font-bold text-center text-slate-500 uppercase text-xs tracking-widest mb-10">Flujo de
+                    Ingesta y Creación de Base Vectorial</h3>
+                <div class="flex items-center justify-between min-w-[800px] px-10">
+                    <!-- Paso 1 -->
+                    <div class="flex flex-col items-center rag-step group">
+                        <div
+                            class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-4 border border-indigo-200 shadow-sm group-hover:bg-indigo-600 group-hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                <polyline points="14 2 14 8 20 8" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-slate-800">FAQ PDF</span>
+                        <span class="text-xs text-slate-400 uppercase">Documento</span>
+                    </div>
+
+                    <svg class="text-slate-300 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+
+                    <!-- Paso 2 -->
+                    <div class="flex flex-col items-center rag-step group">
+                        <div
+                            class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-4 border border-blue-200 shadow-sm group-hover:bg-blue-600 group-hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M4 11V4h7" />
+                                <path d="M4 13v7h7" />
+                                <path d="M20 11V4h-7" />
+                                <path d="M20 13v7h-7" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-slate-800">Chunking</span>
+                        <span class="text-xs text-slate-400 uppercase">Fragmentación</span>
+                    </div>
+
+                    <svg class="text-slate-300 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+
+                    <!-- Paso 3 -->
+                    <div class="flex flex-col items-center rag-step group">
+                        <div
+                            class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-4 border border-purple-200 shadow-sm group-hover:bg-purple-600 group-hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                                <path d="M21 3v9h-9" />
+                                <path d="m9 9 3 3-3 3" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-slate-800">Embeddings</span>
+                        <span class="text-xs text-slate-400 uppercase">Vectores (Ollama)</span>
+                    </div>
+
+                    <svg class="text-slate-300 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+
+                    <!-- Paso 4 -->
+                    <div class="flex flex-col items-center rag-step group">
+                        <div
+                            class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-4 border border-amber-200 shadow-sm group-hover:bg-amber-600 group-hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                                <path d="M3 12A9 3 0 0 0 21 12" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-slate-800">ChromaDB</span>
+                        <span class="text-xs text-slate-400 uppercase">Vector Store</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-slate-900 rounded-xl p-6 overflow-hidden">
+                    <h4 class="text-indigo-400 font-bold mb-4 text-sm">Carga y Fragmentación</h4>
+                    <pre class="text-xs text-slate-300 font-mono"><code>from langchain_community.document_loaders import PyPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+loader = PyPDFLoader("faqs.pdf")
+docs = loader.load()
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000, 
+    chunk_overlap=200
+)
+splits = text_splitter.split_documents(docs)</code></pre>
+                </div>
+                <div class="bg-slate-900 rounded-xl p-6 overflow-hidden">
+                    <h4 class="text-indigo-400 font-bold mb-4 text-sm">Almacenamiento Vectorial</h4>
+                    <pre class="text-xs text-slate-300 font-mono"><code>from langchain_chroma import Chroma
+from langchain_community.embeddings import OllamaEmbeddings
+
+vectorstore = Chroma.from_documents(
+    documents=splits, 
+    embedding=OllamaEmbeddings(model="llama3"),
+    persist_directory="./db_faqs"
+)</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: AGENTE -->
+        <div id="section-agente" class="content-section hidden animate-fade-in">
+            <h2 class="text-3xl font-bold mb-8 text-indigo-900">Programación del Agente</h2>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-indigo-600" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    El Razonamiento
+                </h3>
+                <p class="text-slate-600 mb-6">El agente utiliza un <strong>Prompt de Sistema</strong> para definir su
+                    comportamiento. Es vital indicarle que solo use el contexto proporcionado.</p>
+                <div class="bg-amber-50 border border-amber-200 p-6 rounded-xl italic text-amber-800 text-sm mb-6">
+                    "Eres un agente de soporte de TechPyme. Responde preguntas de clientes usando solo el contexto de
+                    las FAQs. Si la información no está presente o el tono del cliente es agresivo, responde exactamente
+                    con la etiqueta: [ESCALAR_A_HUMANO]."
+                </div>
+                <div class="bg-slate-900 p-6 rounded-xl overflow-hidden shadow-xl">
+                    <pre class="text-xs text-slate-300 font-mono"><code>from langchain.chains import RetrievalQA
+
+qa_chain = RetrievalQA.from_chain_type(
+    llm=Ollama(model="llama3"),
+    retriever=vectorstore.as_retriever(),
+    chain_type="stuff"
+)
+
+# Ejemplo de triaje
+email = "¿Puedo devolver un producto tras 15 días?"
+resultado = qa_chain.invoke(email)
+
+if "[ESCALAR_A_HUMANO]" in resultado:
+    print("Enviando alerta a Soporte Humano...")
+else:
+    print(f"Respuesta generada: {resultado}")</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: RAG 2.0 -->
+        <div id="section-rag2" class="content-section hidden animate-fade-in">
+            <section
+                class="bg-gradient-to-br from-indigo-800 to-purple-900 text-white p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-4xl font-bold mb-6">Evolución: RAG 2.0</h2>
+                    <p class="text-xl text-indigo-100 mb-10 max-w-2xl leading-relaxed">
+                        Un sistema básico puede fallar si la pregunta es ambigua. El RAG Agéntico añade capas de
+                        razonamiento adicionales.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                            <h4 class="font-bold text-xl mb-2 text-indigo-300">Auto-Corrección</h4>
+                            <p class="text-sm">El agente verifica si su propia respuesta responde realmente a la
+                                pregunta antes de enviarla.</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                            <h4 class="font-bold text-xl mb-2 text-indigo-300">Multi-Búsqueda</h4>
+                            <p class="text-sm">Genera múltiples versiones de la duda del usuario para encontrar mejores
+                                coincidencias en la DB.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl"></div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 px-6 mt-12 border-t border-slate-800">
+        <div
+            class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div>
+                <div class="font-bold text-white text-lg mb-1">TechPyme Academy</div>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Curso Programación IA con Python</p>
+            </div>
+            <div class="text-sm">
+                Material educativo para alumnos del curso práctico.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(id) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Mostrar la sección seleccionada
+            document.getElementById('section-' + id).classList.remove('hidden');
+
+            // Actualizar clases de los botones de navegación
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('tab-active', 'text-indigo-600');
+                btn.classList.add('text-slate-500');
+            });
+
+            const activeBtn = document.getElementById('nav-' + id);
+            activeBtn.classList.add('tab-active', 'text-indigo-600');
+            activeBtn.classList.remove('text-slate-500');
+
+            // Scroll suave hacia arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

@@ -14,14 +14,16 @@ Nuestro cliente nos pide automatizar este proceso. Para ello crearémos un agent
 
 ## MODELO DE IA LOCAL
 
+Como se puede tener un modelo de IA en local usando Ollama.
+
 ## RAG
 
 ### ¿QUE ES UN RAG?
 
 **RAG (Retrieval-Augmented Generation)** es una técnica que permite a un modelo de lenguaje (LLM) buscar información relevante en una base de datos propia *antes* de responder. Así el agente:
-- ✅ Responde con datos reales de la empresa (no inventa)
-- ✅ Puede actualizarse sin reentrenar el modelo
-- ✅ Funciona 100% en local (los datos no salen del ordenador)
+- Responde con datos reales de la empresa (no inventa)
+- Puede actualizarse sin reentrenar el modelo
+- Funciona 100% en local (los datos no salen del ordenador)
 
 ### CREAR EL UN RAG
 
@@ -37,6 +39,8 @@ Crear un RAG usando LangChain y ChromaDB:
 
 ### ¿QUE ES UN AGENTE?
 
+Explicar el concepto de agente de IA
+
 ### PROGRAMAR EL AGENTE
 
 - Instalar las librerias adicionales para el uso del agente.
@@ -50,4 +54,5 @@ Crear un RAG usando LangChain y ChromaDB:
 
 # RAG 2.0
 
+Explicar que es el RAG 2.0
 
