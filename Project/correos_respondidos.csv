@@ -1,49 +1,5 @@
 timestamp,id,remitente,asunto,cuerpo,respuesta
-2026-04-09 19:31:44,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","El equipo de TechPyme
-Hola, gracias por contactar con nosotros. Tu pedido será enviado por envío estándar y costará 4,99 euros. Llegará a Madrid en aproximadamente 48-72 horas laborables. Gracias por tu paciencia. Un saludo."
-2026-04-09 19:33:32,4,marta@email.com,Horario de atención,"Buenos días, ¿podéis decirme cuál es vuestro horario de atención al cliente? Quería llamaros esta tarde.","El horario de atención al cliente de TechPyme es de lunes a viernes, de 9:00 a 18:00 horas."
-2026-04-09 19:38:48,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","Hola!
-
-Gracias por contactarnos. Como tu pedido tiene un importe igual o superior a 50 euros, el envío es completamente gratuito. En cuanto al plazo de entrega, nuestros envíos estándar tardan entre 48 y 72 horas laborables en llegar a la península ibérica, incluyendo Madrid.
-
-Esperamos que tu pedido llegue pronto. ¡Si tienes alguna otra pregunta, no dudes en hacérmelo saber!
-
-Atentamente,
-El equipo de TechPyme"
-2026-04-09 19:42:41,3,pedro@email.com,Problema técnico con router,"Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?","Buenas tardes,
-
-Lo sentimos mucho que estés experimentando problemas con el router. Como no es un producto de nuestra tienda, no podemos brindarte soporte técnico directo. Sin embargo, recomendamos que contactes con el proveedor del producto o con Amazon, ya que ellos pueden ayudarte a resolver el problema.
-
-Si necesitas ayuda adicional, puedes contactar con nuestro equipo de soporte técnico a través de soporte@techpyme.es con el número de pedido y una descripción del problema. Esperamos poder ayudarte en lo posible.
-
-Atentamente,
-El equipo de TechPyme"
-2026-04-09 19:44:49,4,marta@email.com,Horario de atención,"Buenos días, ¿podéis decirme cuál es vuestro horario de atención al cliente? Quería llamaros esta tarde.","Buenos días!
-
-Nuestro horario de atención al cliente es de lunes a viernes, de 9:00 a 18:00 horas. Lamentablemente, los sábados, domingos y festivos nuestro servicio de atención al cliente está cerrado.
-
-Esperamos poder atenderte en el horario laborable. ¡Hasta luego!
-
-El equipo de TechPyme"
-2026-04-12 22:50:47,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","El equipo de TechPyme
-Los envíos están gratuitos para pedidos con un importe igual o superior a 50 euros. Por lo tanto, tu pedido será enviado de forma gratuita hasta Madrid. El tiempo estimado de entrega es entre 48 y 72 horas laborables.
-Escalar_a_humano
-
-El equipo de TechPyme"
-2026-04-12 22:51:45,3,pedro@email.com,Problema técnico con router,"Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?",ESCALER_A_HUMANO
-2026-04-12 23:15:55,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","El equipo de TechPyme
-Los envíos están gratuitos para pedidos con un importe igual o superior a 50 euros. Por lo tanto, tu pedido será enviado de forma gratuita hasta Madrid. El tiempo estimado de entrega es entre 48 y 72 horas laborables.
-Escalar_a_humano
-
-El equipo de TechPyme"
-2026-04-12 23:16:50,3,pedro@email.com,Problema técnico con router,"Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?",ESCALER_A_HUMANO
-2026-04-12 23:34:30,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","El equipo de TechPyme
-Los envíos están gratuitos para pedidos con un importe igual o superior a 50 euros. Por lo tanto, tu pedido será enviado de forma gratuita hasta Madrid. El tiempo estimado de entrega es entre 48 y 72 horas laborables.
-Escalar_a_humano
-
-El equipo de TechPyme"
-2026-04-12 23:35:21,3,pedro@email.com,Problema técnico con router,"Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?",ESCALER_A_HUMANO
-2026-04-14 18:19:11,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","Estimado/a cliente,
+2026-04-16 17:21:19,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","Estimado/a cliente,
 
 El envío estándar para pedidos superiores a 50 euros es gratuito.
 
@@ -51,15 +7,20 @@ Atentamente,
 El equipo de atención al cliente de TechPyme
 
 📧 soporte@techpyme.es | 🕘 Lunes a viernes, 9:00 – 18:00 h"
-2026-04-14 18:21:33,3,pedro@email.com,Problema técnico con router,"Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?","Estimado/a cliente,
+2026-04-16 17:22:51,3,pedro@email.com,Problema técnico con router,"Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?","Estimado/a cliente,
 
 Lo siento por la inconveniencia, pero necesito más información para poder ayudarle. Por favor, envíe el número de pedido junto con una descripción detallada del problema.
 
 Atentamente,
 El equipo de atención al cliente de TechPyme
 📧 soporte@techpyme.es | 🕘 Lunes a viernes, 9:00 – 18:00 h"
-2026-04-14 18:22:50,4,marta@email.com,Horario de atención,"Buenos días, ¿podéis decirme cuál es vuestro horario de atención al cliente? Quería llamaros esta tarde.","Estimado/a cliente,
+2026-04-16 17:23:44,4,marta@email.com,Horario de atención,"Buenos días, ¿podéis decirme cuál es vuestro horario de atención al cliente? Quería llamaros esta tarde.","Estimado/a cliente,
 El horario de atención al cliente es de lunes a viernes, de 9:00 a 18:00 horas.
+Atentamente,
+El equipo de atención al cliente de TechPyme
+📧 soporte@techpyme.es | 🕘 Lunes a viernes, 9:00 – 18:00 h"
+2026-04-16 17:34:15,1,ricardo@email.com,Quiero saber si aceptáis Bizum,"Hola, me gustaría hacer un pedido pero solo tengo Bizum. ¿Lo aceptáis como método de pago?","Estimado/a cliente,
+Nos complace informar que Bizum está aceptado como método de pago en TechPyme.
 Atentamente,
 El equipo de atención al cliente de TechPyme
 📧 soporte@techpyme.es | 🕘 Lunes a viernes, 9:00 – 18:00 h"

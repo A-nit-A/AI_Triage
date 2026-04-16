@@ -23,6 +23,7 @@ import os
 import sys
 import csv
 import json
+import time
 import subprocess
 import argparse
 from datetime import datetime
@@ -292,9 +293,24 @@ def main() -> None:
     args = parser.parse_args()
 
     verificar_ollama()
-    correos   = cargar_correos(args.correos)
     rag_chain = cargar_rag(modelo=args.modelo, prompt_file=args.prompt)
-    ejecutar_triaje(correos, rag_chain)
+    
+    print("\nIniciando monitorización cada 10 segundos... (Presiona Ctrl+C para detener)")
+    try:
+        while True:
+            try:
+                correos = cargar_correos(args.correos)
+                if correos:
+                    ejecutar_triaje(correos, rag_chain)
+                    os.remove(args.correos)
+                    print(f"\n[INFO] Archivo '{args.correos}' eliminado exitosamente tras ser procesado.")
+            except FileNotFoundError:
+                pass # Silenciar el FileNotFoundError para no llenar la terminal cada 10 seg
+            
+            time.sleep(10)
+    except KeyboardInterrupt:
+        print("\nMonitorización detenida por el usuario.")
+
     # Mostrar resultados
     # _mostrar_csv(ARCHIVO_ESCALADOS, "escalados", 5)
     # _mostrar_csv(ARCHIVO_RESPONDIDOS, "respondidos", 5) 
