@@ -136,7 +136,7 @@ Para parar Ollama, necesitamos un comando que cierre la aplicación de forma seg
    taskkill /F /IM "ollama app.exe" /IM "ollama.exe"
    ```
 4. Haz clic en **Siguiente**.
-5. Ponle un nombre fácil de reconocer, por ejemplo: **`🛑 Detener Ollama`**.
+5. Ponle un nombre fácil de reconocer, por ejemplo: **`Detener Ollama`**.
 6. Haz clic en **Finalizar**.
 
 ### 2. Crear el acceso directo para INICIAR Ollama
@@ -150,12 +150,12 @@ Para volver a iniciarlo, solo necesitamos apuntar al archivo ejecutable de la ap
    %LOCALAPPDATA%\Programs\Ollama\ollama app.exe
    ```
 4. Haz clic en **Siguiente**.
-5. Ponle un nombre, por ejemplo: **`▶️ Iniciar Ollama`**.
+5. Ponle un nombre, por ejemplo: **`Iniciar Ollama`**.
 6. Haz clic en **Finalizar**.
 
 ---
 
-### 💡 Consejo extra: Evitar que Ollama se inicie con Windows
+### Consejo extra: Evitar que Ollama se inicie con Windows
 Si vas a usar estos botones manuales, lo ideal es evitar que Ollama arranque solo cada vez que enciendes el PC. Para hacerlo:
 
 1. Busca el icono de Ollama (la llamita) en la bandeja del sistema (esquina inferior derecha de tu pantalla, quizá dentro de la flechita de iconos ocultos).
