@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChromaDB: La Base de Datos AI-Native</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .db-layer {
+            transition: all 0.3s ease;
+        }
+
+        .db-layer:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes flow {
+            0% {
+                stroke-dashoffset: 20;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .flow-line {
+            stroke-dasharray: 5;
+            animation: flow 1s linear infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 leading-relaxed">
+
+    <!-- Hero Section -->
+    <header class="py-20 px-6 bg-white border-b border-slate-200">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex justify-center mb-6">
+                <div class="p-3 bg-amber-100 text-amber-600 rounded-2xl shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3" />
+                        <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                        <path d="M3 12A9 3 0 0 0 21 12" />
+                    </svg>
+                </div>
+            </div>
+            <h1 class="text-5xl font-black mb-6 tracking-tight">Dominando <span class="text-amber-600">ChromaDB</span>
+            </h1>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                La base de datos vectorial de código abierto diseñada para simplificar el almacenamiento y la búsqueda
+                de embeddings en aplicaciones RAG.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto py-16 px-6 space-y-24">
+
+        <!-- ¿Qué es ChromaDB? -->
+        <section class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-slate-900">¿Por qué es especial?</h2>
+                <p class="text-slate-600">
+                    A diferencia de las bases de datos tradicionales que guardan filas y columnas, ChromaDB guarda
+                    **vectores de alta dimensión**.
+                </p>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-8 h-8 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center shrink-0">
+                            1</div>
+                        <p class="text-sm text-slate-600 font-medium">Búsqueda semántica instantánea por similitud.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-8 h-8 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center shrink-0">
+                            2</div>
+                        <p class="text-sm text-slate-600 font-medium">Fácil de integrar con LangChain y modelos de IA.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-8 h-8 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center shrink-0">
+                            3</div>
+                        <p class="text-sm text-slate-600 font-medium">Ligera y ejecutable en local sin servidores
+                            pesados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico: Almacenamiento en Chroma -->
+            <div class="bg-amber-600 p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden text-white">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full"></div>
+                <h4 class="text-xs font-bold text-amber-200 uppercase tracking-widest mb-6">Anatomía de un Registro</h4>
+                <div class="space-y-4">
+                    <div class="bg-white/10 border border-white/20 p-4 rounded-xl">
+                        <span class="text-[10px] font-bold uppercase opacity-60">ID</span>
+                        <p class="font-mono text-xs">doc_001</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/20 p-4 rounded-xl">
+                        <span class="text-[10px] font-bold uppercase opacity-60">Vector (Embedding)</span>
+                        <p class="font-mono text-[10px] truncate">[0.12, -0.45, 0.98, ...]</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/20 p-4 rounded-xl">
+                        <span class="text-[10px] font-bold uppercase opacity-60">Metadatos & Texto</span>
+                        <p class="text-xs italic leading-relaxed">"El envío tarda 48 horas..."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- El secreto de SQLite -->
+        <section class="space-y-10">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-4">El motor oculto: ¿Por qué SQLite?</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">ChromaDB es un sistema híbrido. No solo vive de vectores.
+                </p>
+            </div>
+
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-xl overflow-hidden relative">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center font-bold">
+                                SQL</div>
+                            <h3 class="text-xl font-bold text-slate-800">Capa de Persistencia</h3>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            ChromaDB utiliza **SQLite** internamente para gestionar todo lo que NO es un vector:
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-2 text-xs text-slate-500">
+                                <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Definición de colecciones y esquemas.
+                            </li>
+                            <li class="flex items-center gap-2 text-xs text-slate-500">
+                                <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Almacenamiento de los textos originales (chunks).
+                            </li>
+                            <li class="flex items-center gap-2 text-xs text-slate-500">
+                                <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Metadatos para filtrado previo (ej: fecha > 2023).
+                            </li>
+                        </ul>
+                        <div class="bg-sky-50 p-4 rounded-xl border border-sky-100 text-xs text-sky-800 italic">
+                            "SQLite permite que ChromaDB guarde los datos en un solo archivo local de forma robusta y
+                            eficiente."
+                        </div>
+                    </div>
+
+                    <!-- Diagrama de Arquitectura -->
+                    <div class="relative flex items-center justify-center py-10">
+                        <div
+                            class="absolute inset-0 bg-slate-50 rounded-2xl opacity-50 border border-dashed border-slate-300">
+                        </div>
+                        <div class="relative z-10 flex flex-col gap-6 items-center">
+                            <!-- Vector Index -->
+                            <div class="db-layer w-48 bg-amber-500 text-white p-4 rounded-xl text-center shadow-lg">
+                                <span class="text-[10px] uppercase font-bold tracking-widest block mb-1">Vector
+                                    Index</span>
+                                <span class="font-bold">HNSW / DuckDB</span>
+                            </div>
+
+                            <svg class="h-8" viewBox="0 0 2 30">
+                                <line x1="1" y1="0" x2="1" y2="30" stroke="#cbd5e1" stroke-width="2"
+                                    class="flow-line" />
+                            </svg>
+
+                            <!-- SQLite Layer -->
+                            <div class="db-layer w-48 bg-sky-600 text-white p-4 rounded-xl text-center shadow-lg">
+                                <span class="text-[10px] uppercase font-bold tracking-widest block mb-1">Metadata
+                                    Storage</span>
+                                <span class="font-bold">SQLite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementación en Python -->
+        <section>
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold mb-4 text-slate-900">Programación con ChromaDB</h2>
+                <p class="text-slate-600 italic">Ejemplo real de cómo persistir y consultar datos.</p>
+            </div>
+
+            <div class="bg-slate-900 rounded-3xl p-8 shadow-2xl overflow-hidden border border-slate-800">
+                <div class="flex items-center justify-between mb-6 border-b border-slate-800 pb-4">
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500">chroma_logic.py</span>
+                </div>
+                <pre class="code-font text-sm leading-relaxed"><code class="text-amber-200">import chromadb
+from chromadb.utils import embedding_functions
+
+# 1. Crear cliente persistente (esto crea un archivo SQLite en disco)
+client = chromadb.PersistentClient(path="./mi_base_de_datos")
+
+# 2. Definir función de embeddings (ej: OpenAI o Local)
+default_ef = embedding_functions.DefaultEmbeddingFunction()
+
+# 3. Crear o cargar una colección
+collection = client.get_or_create_collection(
+    name="faqs_tienda",
+    embedding_function=default_ef
+)
+
+# 4. Añadir documentos (Chroma los vectoriza automáticamente)
+collection.add(
+    documents=["El envío tarda 48h.", "El horario es de 9 a 18h."],
+    metadatas=[{"categoria": "envios"}, {"categoria": "horarios"}],
+    ids=["id1", "id2"]
+)
+
+# 5. Consultar por similitud
+results = collection.query(
+    query_texts=["¿A qué hora abrís?"],
+    n_results=1
+)
+
+print(f"Resultado: {results['documents'][0]}")</code></pre>
+            </div>
+        </section>
+
+        <!-- Conclusión -->
+        <section class="bg-amber-600 rounded-[3rem] p-12 text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-white/20 rounded-full blur-3xl"></div>
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold mb-6 italic">En resumen</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-xl">¿Por qué usar ChromaDB?</h4>
+                        <p class="text-amber-50 text-sm leading-relaxed">
+                            Es la opción por defecto para principiantes y expertos en RAG porque **maneja todo el ciclo
+                            de vida**: desde la generación del embedding hasta el almacenamiento persistente y la
+                            recuperación ultra-rápida.
+                        </p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                        <h4 class="font-bold mb-2">Dato Clave</h4>
+                        <p class="text-xs text-amber-100 italic">
+                            SQLite no es solo para guardar metadatos; es el pegamento que permite que ChromaDB sea
+                            estable. Al ser una base de datos relacional probada durante décadas, garantiza que tus
+                            documentos no se pierdan aunque el servidor se apague.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

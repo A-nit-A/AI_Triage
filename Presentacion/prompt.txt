@@ -1,5 +1,0 @@
-Me gustaría que creases una página web para ilustrar una actividad a realizar por los alumnos del curso 
-programación de IA con python. La actividad describe como crear un agente de ia para responder a los 
-emails que recibe una empresa. A partir de un fichero con las FAQs de la empresa crea un RAG que 
-consultará el agente para responder a los emails o escalarlos a humano si no encuentra la respuesta en las FAQs. 
-Usa el fichero presentación como guía para la creación de la página web.
