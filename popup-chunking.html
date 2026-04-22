@@ -151,15 +151,11 @@
                             class="absolute top-0 left-0 bg-indigo-500 text-[10px] font-black px-3 py-1 rounded-br-lg text-white uppercase tracking-tighter">Chunk
                             01</span>
                         <div class="text-slate-300 font-mono text-sm leading-relaxed mt-4">
-                            "El cliente tiene un plazo de <span
-                                class="bg-amber-400/20 text-amber-200 px-1 rounded-sm border border-amber-400/30">14
-                                días para devolver</span> el producto en su embalaje original..."
+                            "El cliente tiene un plazo de 14 días para devolver el producto<span
+                                class="bg-amber-400/20 text-amber-200 px-1 rounded-sm border border-amber-400/30">en su
+                                embalaje original.</span>"
                         </div>
-                        <div
-                            class="absolute right-0 top-0 bottom-0 w-12 bg-amber-400/10 border-r-2 border-amber-400/50 backdrop-blur-sm flex items-center justify-center">
-                            <div class="rotate-90 text-[10px] text-amber-400 font-bold tracking-widest uppercase">
-                                Overlap</div>
-                        </div>
+
                     </div>
 
                     <!-- Fragmento 2 -->
@@ -168,14 +164,11 @@
                         <span
                             class="absolute top-0 left-0 bg-purple-500 text-[10px] font-black px-3 py-1 rounded-br-lg text-white uppercase tracking-tighter">Chunk
                             02</span>
-                        <div
-                            class="absolute left-0 top-0 bottom-0 w-12 bg-amber-400/10 border-l-2 border-amber-400/50 backdrop-blur-sm flex items-center justify-center">
-                            <div class="-rotate-90 text-[10px] text-amber-400 font-bold tracking-widest uppercase">
-                                Overlap</div>
-                        </div>
+
                         <div class="text-slate-300 font-mono text-sm leading-relaxed mt-4 ml-8">
-                            "<span class="bg-amber-400/20 text-amber-200 px-1 rounded-sm border border-amber-400/30">14
-                                días para devolver</span> el producto. Una vez recibido, el reembolso tardará 5 días."
+                            "<span class="bg-amber-400/20 text-amber-200 px-1 rounded-sm border border-amber-400/30">en
+                                su
+                                embalaje original.</span> Una vez recibido, el reembolso tardará 5 días."
                         </div>
                     </div>
                 </div>
@@ -259,10 +252,15 @@ docs = splitter.create_documents([text])</code></pre>
                         <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center font-bold">01
                         </div>
                         <h4 class="font-bold text-xl">¿Tamaño?</h4>
-                        <p class="text-indigo-100 text-sm leading-relaxed">
-                            Chunks pequeños (500-800 tokens) son mejores para respuestas precisas. Chunks grandes dan
-                            más contexto pero son costosos.
-                        </p>
+                        <ul class="text-indigo-100 text-sm leading-relaxed list-disc pl-5 space-y-1">
+                            <li><strong>FAQs:</strong> 128 to 256 tokens (matches question-answer pairs naturally)</li>
+                            <li><strong>Technical docs:</strong> 300 to 500 tokens (preserves step-by-step procedures)
+                            </li>
+                            <li><strong>Research papers:</strong> 512 to 1024 tokens (maintains complex arguments)</li>
+                            <li><strong>Legal documents:</strong> 600 to 1000 tokens (keeps clause integrity)</li>
+                            <li><strong>Code documentation:</strong> 200 to 400 tokens (aligns with function-level
+                                context)</li>
+                        </ul>
                     </div>
                     <div class="space-y-3">
                         <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center font-bold">02
