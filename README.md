@@ -4,70 +4,25 @@ Una pequeña tienda online recibe decenas de correos al día. El dueño pierde 2
 
 Nuestro cliente nos pide automatizar este proceso. Para ello crearémos un agente de triaje de emails que actuará como el primer filtro inteligente.
 
-## Flujo del agente
-
-1. Lee el correo y determina la intención (Ej: "¿Dónde está mi pedido?", "Quiero hacer una devolución", "Colaboración de marketing").
-
-2. Si es una duda frecuente (ej. horarios, políticas de envío), el agente redacta y envía la respuesta usando la base de conocimiento (faqs.txt).
-
-3. Si es un problema complejo (ej. producto defectuoso), etiqueta el correo como "Urgente - Soporte" y notifica al encargado humano con un resumen del problema.
-
-## Hoja de ruta
-
-Hoja de ruta paso a paso para crear el agente de triaje de emails.
-
-### Fase 1: Preparación del Entorno Local (El motor de la IA)
-
-El primer paso es instalar el modelo que correrá en local en el ordenador de TechPyme.
-
-- **Instalar Ollama**, es la herramienta más sencilla para correr modelos locales. Los alumnos deben descargarla de su web oficial e instalarla (disponible para Windows, Mac y Linux).
-
-- **Descargar el Modelo LLM**, abrir la terminal y ejecutar un modelo ligero pero capaz. Se recomienda llama3 o mistral (se necesitarán unos 8GB de RAM). El comando sería: ollama run llama3.
-
-- **Instalar librerías de Python**, se instalará el ecosistema que conectará Python con Ollama y gestionará el RAG.
-
-### Fase 2: Creación de la Base de Conocimiento (RAG)
-
-Aquí el agente aprenderá sobre la empresa para poder responder.
-
-- **El Documento Fuente**, partimos de un archivo de texto (faqs.txt) con las políticas de la empresa ficticia (ej. "Los envíos tardan 48h", "Se aceptan devoluciones en los primeros 14 días", "Nuestro horario es de 9:00 a 18:00").
-
-- **Carga y Fragmentación (Chunking)**, se usa LangChain para leer el archivo y dividirlo en fragmentos pequeños (chunks) que la IA pueda procesar fácilmente.
-
-- **Embeddings Locales**, se usa sentence-transformers (modelos de HuggingFace que corren en local) para convertir esos fragmentos de texto en vectores matemáticos.
-
-- **Base de Datos Vectorial**, se guardan esos vectores en ChromaDB (una base de datos que se ejecuta localmente en la misma carpeta del proyecto) para que la IA pueda buscar en ellos más tarde.
-
-### Fase 3: La Lógica del Agente (El Cerebro)
-
-El script de Python deberá tomar decisiones basándose en el "correo" entrante.
-
-- **El Prompt del Sistema (System Prompt)**, se define el comportamiento del agente. Por ejemplo: "Eres un asistente de atención al cliente. Tu trabajo es leer el correo del cliente y buscar la respuesta en el contexto proporcionado. Si la respuesta no está en el contexto, o si el cliente está enfadado, debes clasificar el correo como 'ESCALAR_A_HUMANO' y no inventar nada."
-
-- **La Cadena de Ejecución (Chain)**, se construye la secuencia en LangChain:
-
-    Recibir el correo del cliente.
-
-    Buscar en ChromaDB los párrafos de faqs.txt que más se parezcan a la duda del cliente.
-
-    Pasarle al LLM local (Ollama) el correo del cliente y los párrafos encontrados.
-
-- **Respuesta del Agente**, se genera la respuesta usando el LLM local y los párrafos encontrados:
-
-    Si la respuesta está en el contexto, el agente redacta y envía la respuesta usando la base de conocimiento.
-
-    Si es un problema complejo (ej. producto defectuoso), etiqueta el correo como "Urgente - Soporte" y notifica al encargado humano con un resumen del problema.
+El agente responderá a los correos si consigue encontrar la respuesta en la base de datos creada a partir de las FAQs de TechPyme. Si no consigue encontrar la respuesta lo derivará al departamento de atención al cliente.
 
 ## Simulación
 
-Para simplificar el proceso se simulará la entrada de correos. Se creará un archivo JSON con 3 o 4 casos de prueba: un correo fácil (pregunta por el horario), un correo sobre un envío (pregunta por devoluciones) y un correo complejo/queja (producto roto, que debería ser escalado).
+Para simplificar el proceso se simulará la entrada de correos. Se usará un archivo JSON con 4 casos de prueba: un correo fácil (pregunta por el horario), un correo sobre un envío (pregunta por devoluciones) y un correo complejo/queja (producto roto, que debería ser escalado).
 
 - Los correos respondidos se almacenarán en un archivo CSV llamado correos_respondidos.csv
 
 - Los correos escalados se almacenarán en un archivo CSV llamado correos_escalados.csv
 
+- Al finalizar de procesar el archivo JSON se eliminará para no volver a procesarlo y permitir una nueva ejecución con otro archivo JSON.
 
+## Estructura del Repositorio
 
-        
+A continuación se detalla la estructura principal del proyecto y el contenido de sus directorios:
 
-
+- **`automation/`**: Contiene los scripts principales del agente de IA (`agent.py`, `rag.py`), la base de conocimiento y los datos generados durante la ejecución.
+- **`challenge/`**: Incluye los retos y próximos pasos a desarrollar en el proyecto.
+- **`docs/`**: Carpeta de documentación. Dentro se encuentra el directorio **`docs/web/`**, que contiene las páginas y recursos a los que accede **`index.html`**.
+- **`how_to_do_it/`**: Contiene instrucciones o guías paso a paso sobre el desarrollo del proyecto.
+- **`index.html`**: Es la página web principal de presentación del repositorio. Sirve como punto de entrada visual para entender el proyecto.
+- **`main.py`**: Script principal que orquesta la ejecución del proyecto, inicializando la base de datos vectorial si es necesario y lanzando el agente.
