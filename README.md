@@ -20,9 +20,9 @@ Para simplificar el proceso se simulará la entrada de correos. Se usará un arc
 
 A continuación se detalla la estructura principal del proyecto y el contenido de sus directorios:
 
-- **`automation/`**: Contiene los scripts principales del agente de IA (`agent.py`, `rag.py`), la base de conocimiento y los datos generados durante la ejecución.
+- **`automation/`**: Contiene los scripts principales del agente de la automatización (`agent.py`, `rag.py`), creación de la base de conocimiento y el agente que se encarga de responder o derivar los correos. 
 - **`challenge/`**: Incluye los retos y próximos pasos a desarrollar en el proyecto.
 - **`docs/`**: Carpeta de documentación. Dentro se encuentra el directorio **`docs/web/`**, que contiene las páginas y recursos a los que accede **`index.html`**.
-- **`how_to_do_it/`**: Contiene instrucciones o guías paso a paso sobre el desarrollo del proyecto.
+- **`how_to_do_it/`**: Contiene guías paso a paso sobre el desarrollo del proyecto.
 - **`index.html`**: Es la página web principal de presentación del repositorio. Sirve como punto de entrada visual para entender el proyecto.
 - **`main.py`**: Script principal que orquesta la ejecución del proyecto, inicializando la base de datos vectorial si es necesario y lanzando el agente.
