@@ -1,0 +1,352 @@
+        <!-- SECCIÓN: AGENTE -->
+        <div id="section-agente" class="content-section animate-fade-in">
+
+            <!-- CABECERA CON IDENTIDAD VISUAL Y ICONO ANIMADO -->
+            <div class="flex items-center gap-5 mb-10">
+                <div class="relative flex-shrink-0">
+                    <!-- Icono animado agent-pulse -->
+                    <div class="agent-pulse-ring"></div>
+                    <div class="agent-pulse-ring delay-1"></div>
+                    <div
+                        class="w-20 h-20 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg relative z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white agent-brain-icon"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
+                            <path
+                                d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-indigo-900">Programación del Agente</h2>
+                    <p class="text-slate-500 mt-1">Cerebro lógico del sistema · RAG · Triaje · Escalado</p>
+                </div>
+            </div>
+
+            <!-- DIAGRAMA DE FLUJO AGENTE ↔ RAG -->
+            <div class="bg-indigo-900 rounded-2xl p-8 mb-8 shadow-xl relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-indigo-800/40 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none">
+                </div>
+                <h3 class="font-bold text-indigo-300 uppercase text-xs tracking-widest mb-8 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                    Cómo el Agente interactúa con el RAG
+                </h3>
+                <div class="flex flex-col md:flex-row items-stretch gap-0 relative z-10">
+                    <!-- Paso 1: Análisis -->
+                    <div
+                        class="flex-1 bg-indigo-800/60 border border-indigo-700 rounded-xl md:rounded-r-none p-6 flex flex-col items-center text-center gap-3">
+                        <div class="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center shadow-md">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                            </svg>
+                        </div>
+                        <div class="rag-flow-badge">01</div>
+                        <h4 class="font-bold text-white text-sm">Análisis</h4>
+                        <p class="text-indigo-300 text-xs leading-relaxed">El agente recibe el email del cliente y
+                            extrae la intención y palabras clave para construir la consulta.</p>
+                    </div>
+                    <!-- Flecha -->
+                    <div class="hidden md:flex items-center px-1">
+                        <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <div class="flex md:hidden justify-center py-2">
+                        <svg class="w-6 h-6 text-indigo-500 rotate-90" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <!-- Paso 2: Recuperación -->
+                    <div
+                        class="flex-1 bg-indigo-700/60 border border-indigo-600 rounded-xl md:rounded-none p-6 flex flex-col items-center text-center gap-3">
+                        <div class="w-12 h-12 bg-indigo-400 rounded-xl flex items-center justify-center shadow-md">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                            </svg>
+                        </div>
+                        <div class="rag-flow-badge">02</div>
+                        <h4 class="font-bold text-white text-sm">Recuperación</h4>
+                        <p class="text-indigo-300 text-xs leading-relaxed">Busca en ChromaDB los fragmentos de FAQ más
+                            similares semánticamente mediante embeddings vectoriales.</p>
+                    </div>
+                    <!-- Flecha -->
+                    <div class="hidden md:flex items-center px-1">
+                        <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <div class="flex md:hidden justify-center py-2">
+                        <svg class="w-6 h-6 text-indigo-500 rotate-90" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <!-- Paso 3: Síntesis -->
+                    <div
+                        class="flex-1 bg-indigo-600/60 border border-indigo-500 rounded-xl md:rounded-l-none p-6 flex flex-col items-center text-center gap-3">
+                        <div class="w-12 h-12 bg-indigo-300 rounded-xl flex items-center justify-center shadow-md">
+                            <svg class="w-6 h-6 text-indigo-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </div>
+                        <div class="rag-flow-badge">03</div>
+                        <h4 class="font-bold text-white text-sm">Síntesis</h4>
+                        <p class="text-indigo-300 text-xs leading-relaxed">El LLM genera una respuesta natural
+                            combinando el contexto recuperado con el prompt de sistema.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROMPT DE SISTEMA -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-indigo-600" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Prompt de Sistema
+                </h3>
+                <p class="text-slate-600 mb-5">El <strong>Prompt de Sistema</strong> es la directiva de comportamiento
+                    del agente. Define su identidad, restricciones y el protocolo de escalado. Su redacción es crítica.
+                </p>
+
+                <!-- Prompt destacado con formato especial -->
+                <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-xl mb-6 relative">
+                    <div
+                        class="absolute top-3 right-3 bg-amber-200 text-amber-800 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">
+                        System Prompt</div>
+                    <pre class="text-sm text-amber-900 font-mono leading-relaxed whitespace-pre-wrap"><em>"Eres un agente de soporte de TechPyme.
+Responde preguntas de clientes usando <strong>solo</strong> el contexto
+de las FAQs que se te proporciona.
+
+Si la información solicitada NO está en el contexto,
+o si el tono del cliente es agresivo o contiene insultos,
+responde exactamente con la etiqueta:
+    <strong>[ESCALADO_HUMANO]</strong>
+
+No inventes información. No especules.
+Contexto: {context}
+Pregunta del cliente: {question}"</em></pre>
+                </div>
+
+                <!-- CÓDIGO PRINCIPAL -->
+                <div class="bg-slate-900 p-6 rounded-xl overflow-hidden shadow-xl mb-2">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-slate-500 text-xs font-mono uppercase tracking-widest">agente_triage.py</span>
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
+                        </div>
+                    </div>
+                    <pre class="text-xs leading-relaxed font-mono overflow-x-auto code-container"><code><span class="text-slate-500"># ─── Configuración del LLM y Retriever ───────────────────────────</span>
+<span class="text-purple-400">from</span> <span class="text-blue-300">langchain_community.llms</span> <span class="text-purple-400">import</span> <span class="text-white">Ollama</span>
+<span class="text-purple-400">from</span> <span class="text-blue-300">langchain.chains</span> <span class="text-purple-400">import</span> <span class="text-white">RetrievalQA</span>
+<span class="text-purple-400">from</span> <span class="text-blue-300">langchain.prompts</span> <span class="text-purple-400">import</span> <span class="text-white">PromptTemplate</span>
+
+<span class="text-slate-500"># Prompt de sistema con contexto cerrado</span>
+<span class="text-emerald-400">SYSTEM_PROMPT</span> = <span class="text-amber-300 italic">"""Eres un agente de soporte de TechPyme.
+Responde usando solo el contexto de las FAQs.
+Si no tienes datos o hay agresividad, devuelve: [ESCALADO_HUMANO]
+Contexto: {context}
+Pregunta: {question}"""</span>
+
+<span class="text-white">prompt</span> = <span class="text-yellow-300">PromptTemplate</span>(
+    <span class="text-blue-200">template</span>=<span class="text-emerald-400">SYSTEM_PROMPT</span>,
+    <span class="text-blue-200">input_variables</span>=[<span class="text-amber-300">"context"</span>, <span class="text-amber-300">"question"</span>]
+)
+
+<span class="text-white">qa_chain</span> = <span class="text-yellow-300">RetrievalQA</span>.<span class="text-blue-300">from_chain_type</span>(
+    <span class="text-blue-200">llm</span>=<span class="text-yellow-300">Ollama</span>(<span class="text-blue-200">model</span>=<span class="text-amber-300">"llama3"</span>, <span class="text-blue-200">temperature</span>=<span class="text-orange-400">0.0</span>),  <span class="text-slate-500"># ← temperatura 0</span>
+    <span class="text-blue-200">retriever</span>=<span class="text-white">vectorstore</span>.<span class="text-blue-300">as_retriever</span>(),
+    <span class="text-blue-200">chain_type_kwargs</span>={<span class="text-amber-300">"prompt"</span>: <span class="text-white">prompt</span>}
+)</code></pre>
+                </div>
+            </div>
+
+            <!-- GESTIÓN DE ALUCINACIONES -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+                <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    Gestión de Alucinaciones
+                </h3>
+                <p class="text-slate-500 text-sm mb-6">Las alucinaciones ocurren cuando el LLM inventa información no
+                    respaldada por el contexto. Dos mecanismos clave las mitigan:</p>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <!-- Contexto Cerrado -->
+                    <div class="border-2 border-amber-200 bg-amber-50 rounded-xl p-6">
+                        <div class="flex items-start gap-3 mb-3">
+                            <div
+                                class="w-10 h-10 bg-amber-200 text-amber-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-amber-800">Contexto Cerrado</h4>
+                                <span
+                                    class="text-[10px] bg-amber-200 text-amber-800 font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Técnica:
+                                    Grounding</span>
+                            </div>
+                        </div>
+                        <p class="text-amber-900 text-sm leading-relaxed">La instrucción <code
+                                class="bg-amber-200 px-1 rounded text-xs font-mono">"usando solo el contexto"</code> le
+                            prohíbe al LLM usar su conocimiento preentrenado. Si la FAQ no contiene la respuesta, el
+                            agente <strong>debe escalar</strong>, no inventar.</p>
+                    </div>
+
+                    <!-- Temperatura -->
+                    <div class="border-2 border-orange-200 bg-orange-50 rounded-xl p-6">
+                        <div class="flex items-start gap-3 mb-3">
+                            <div
+                                class="w-10 h-10 bg-orange-200 text-orange-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-orange-800">Temperatura = 0.0</h4>
+                                <span
+                                    class="text-[10px] bg-orange-200 text-orange-800 font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Parámetro
+                                    Crítico</span>
+                            </div>
+                        </div>
+                        <p class="text-orange-900 text-sm leading-relaxed">Con <code
+                                class="bg-orange-200 px-1 rounded text-xs font-mono">temperature=0.0</code> el modelo
+                            siempre escoge el token más probable. Respuestas <strong>deterministas y
+                                predecibles</strong>. Nunca uses temperatura alta en agentes de producción.</p>
+
+                        <!-- Mini escala visual -->
+                        <div class="mt-4">
+                            <div class="flex justify-between text-[10px] text-orange-700 font-bold mb-1">
+                                <span>0.0 · Preciso</span><span>1.0 · Creativo</span><span>2.0 · Caótico</span>
+                            </div>
+                            <div
+                                class="h-2 rounded-full bg-gradient-to-r from-orange-300 via-orange-400 to-red-500 relative">
+                                <div
+                                    class="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-orange-500 rounded-full shadow">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROTOCOLO DE ESCALADO -->
+            <div class="bg-emerald-900 rounded-2xl p-8 mb-8 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-800/50 rounded-full pointer-events-none">
+                </div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Protocolo de Escalado Humano</h3>
+                            <p class="text-emerald-400 text-sm">Criterios de decisión para derivar el caso</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <!-- Criterio 1 -->
+                        <div class="bg-emerald-800/60 border border-emerald-700 rounded-xl p-5 flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 bg-red-500/80 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-100 text-sm">Insultos o Agresividad</h4>
+                                <p class="text-emerald-400 text-xs mt-1 leading-relaxed">El agente detecta lenguaje
+                                    hostil y transfiere automáticamente a un operador para preservar la relación con el
+                                    cliente.</p>
+                            </div>
+                        </div>
+                        <!-- Criterio 2 -->
+                        <div class="bg-emerald-800/60 border border-emerald-700 rounded-xl p-5 flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 bg-amber-500/80 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-100 text-sm">Información No Encontrada</h4>
+                                <p class="text-emerald-400 text-xs mt-1 leading-relaxed">La pregunta no tiene
+                                    correspondencia en el RAG. El agente no inventa: escala antes que dar una respuesta
+                                    incorrecta.</p>
+                            </div>
+                        </div>
+                        <!-- Criterio 3 -->
+                        <div class="bg-emerald-800/60 border border-emerald-700 rounded-xl p-5 flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 bg-blue-500/80 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-100 text-sm">Casos Complejos o Legales</h4>
+                                <p class="text-emerald-400 text-xs mt-1 leading-relaxed">Reclamaciones, devoluciones
+                                    complejas o temas legales superan la capacidad del agente y requieren criterio
+                                    humano.</p>
+                            </div>
+                        </div>
+                        <!-- Criterio 4 -->
+                        <div class="bg-emerald-800/60 border border-emerald-700 rounded-xl p-5 flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 bg-purple-500/80 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-100 text-sm">Cliente VIP o Recurrente</h4>
+                                <p class="text-emerald-400 text-xs mt-1 leading-relaxed">Clientes identificados como
+                                    prioritarios pueden ser derivados siempre a un agente humano por política comercial.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etiqueta de activación -->
+                    <div
+                        class="bg-emerald-950/80 border border-emerald-600 rounded-xl px-5 py-4 flex items-center gap-3">
+                        <svg class="w-5 h-5 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p class="text-emerald-300 text-sm">El agente activa el escalado devolviendo la etiqueta exacta
+                            <code
+                                class="bg-emerald-800 px-2 py-0.5 rounded text-emerald-200 font-mono text-xs font-bold">[ESCALADO_HUMANO]</code>
+                            que el sistema Python detecta en tiempo real.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+

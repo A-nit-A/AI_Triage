@@ -1,0 +1,110 @@
+        <!-- SECCIÓN: RAG -->
+        <div id="section-rag" class="content-section animate-fade-in">
+            <h2 class="text-3xl font-bold mb-8 text-indigo-900">Creación del RAG</h2>
+
+            <!-- GRÁFICO DE CREACIÓN DEL RAG -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-10 overflow-x-auto">
+                <h3 class="font-bold text-center text-slate-500 uppercase text-xs tracking-widest mb-10">Flujo de
+                    Ingesta y Creación de Base Vectorial</h3>
+                <div class="flex items-center justify-between min-w-[800px] px-10">
+                    <!-- Paso 1 -->
+                    <div class="flex flex-col items-center rag-step group cursor-pointer"
+                        onclick="openModal('docs/web/popup-faq.html')">
+                        <div
+                            class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-4 border border-indigo-200 shadow-sm group-hover:bg-indigo-600 group-hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                <polyline points="14 2 14 8 20 8" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-slate-800">FAQs.txt</span>
+                        <span class="text-xs text-slate-400 uppercase">Documento</span>
+                    </div>
+
+                    <svg class="text-slate-300 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+
+                    <!-- Paso 2 -->
+                    <div class="flex flex-col items-center rag-step group cursor-pointer"
+                        onclick="openModal('docs/web/popup-chunking.html')">
+                        <div
+                            class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-4 border border-blue-200 shadow-sm group-hover:bg-blue-600 group-hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M4 11V4h7" />
+                                <path d="M4 13v7h7" />
+                                <path d="M20 11V4h-7" />
+                                <path d="M20 13v7h-7" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-slate-800">Chunking</span>
+                        <span class="text-xs text-slate-400 uppercase">Fragmentación</span>
+                    </div>
+
+                    <svg class="text-slate-300 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+
+                    <!-- Paso 3 -->
+                    <div class="flex flex-col items-center rag-step group cursor-pointer"
+                        onclick="openModal('docs/web/popup-embeddings.html')">
+                        <div
+                            class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-4 border border-purple-200 shadow-sm group-hover:bg-purple-600 group-hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                                <path d="M21 3v9h-9" />
+                                <path d="m9 9 3 3-3 3" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-slate-800">Embeddings</span>
+                        <span class="text-xs text-slate-400 uppercase">Vectores (Ollama)</span>
+                    </div>
+
+                    <svg class="text-slate-300 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+
+                    <!-- Paso 4 -->
+                    <div class="flex flex-col items-center rag-step group cursor-pointer"
+                        onclick="openModal('docs/web/popup-chromadb.html')">
+                        <div
+                            class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-4 border border-amber-200 shadow-sm group-hover:bg-amber-600 group-hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                                <path d="M3 12A9 3 0 0 0 21 12" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-slate-800">ChromaDB</span>
+                        <span class="text-xs text-slate-400 uppercase">Vector Store</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Link -->
+            <div class="mt-8 mb-4 text-center">
+                <a href="https://www.youtube.com/watch?v=uAsd9pOIcLg&list=PLTjJMeK5bCENuLgpbgdhOYOJ4m__S-6Wp&index=3"
+                    target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                    </svg>
+                    <span>Ver video sobre funcionamiento y programación RAG</span>
+                </a>
+            </div>
+
+        </div>
+
