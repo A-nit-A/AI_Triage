@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "remitente": "carlos@email.com",
+    "asunto": "Duda sobre el envío",
+    "cuerpo": "Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias."
+  },
+  {
+    "id": 2,
+    "remitente": "laura@email.com",
+    "asunto": "Producto roto",
+    "cuerpo": "¡Estoy indignada! Me acaba de llegar el paquete y el cristal está completamente destrozado. Exijo una solución inmediata o pondré una reclamación."
+  },
+  {
+    "id": 3,
+    "remitente": "pedro@email.com",
+    "asunto": "Problema técnico con router",
+    "cuerpo": "Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?"
+  },
+  {
+    "id": 4,
+    "remitente": "marta@email.com",
+    "asunto": "Horario de atención",
+    "cuerpo": "Buenos días, ¿podéis decirme cuál es vuestro horario de atención al cliente? Quería llamaros esta tarde."
+  }
+]

@@ -1,26 +1,17 @@
 timestamp,id,remitente,asunto,cuerpo,respuesta
-2026-04-16 17:21:19,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","Estimado/a cliente,
+2026-04-24 18:51:58,1,carlos@email.com,Duda sobre el envío,"Hola, hice un pedido ayer de 60 euros. ¿Cuánto tardará en llegar a Madrid y cuánto cuesta el envío? Gracias.","Asunto: Re: Duda sobre el envío
 
-El envío estándar para pedidos superiores a 50 euros es gratuito.
+Estimado cliente,
 
-Atentamente,
-El equipo de atención al cliente de TechPyme
-
-📧 soporte@techpyme.es | 🕘 Lunes a viernes, 9:00 – 18:00 h"
-2026-04-16 17:22:51,3,pedro@email.com,Problema técnico con router,"Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?","Estimado/a cliente,
-
-Lo siento por la inconveniencia, pero necesito más información para poder ayudarle. Por favor, envíe el número de pedido junto con una descripción detallada del problema.
+Gracias por tu pedido. Como mencionamos en nuestro contexto de envíos, los pedidos realizados antes de las 14:00 horas se procesan el mismo día. En cuanto a la duración del envío, los envíos estándar tardan entre 48 y 72 horas laborables en llegar a la península ibérica. Como tu pedido es superior a 50 euros, el envío es gratuito.
 
 Atentamente,
 El equipo de atención al cliente de TechPyme
 📧 soporte@techpyme.es | 🕘 Lunes a viernes, 9:00 – 18:00 h"
-2026-04-16 17:23:44,4,marta@email.com,Horario de atención,"Buenos días, ¿podéis decirme cuál es vuestro horario de atención al cliente? Quería llamaros esta tarde.","Estimado/a cliente,
-El horario de atención al cliente es de lunes a viernes, de 9:00 a 18:00 horas.
-Atentamente,
-El equipo de atención al cliente de TechPyme
-📧 soporte@techpyme.es | 🕘 Lunes a viernes, 9:00 – 18:00 h"
-2026-04-16 17:34:15,1,ricardo@email.com,Quiero saber si aceptáis Bizum,"Hola, me gustaría hacer un pedido pero solo tengo Bizum. ¿Lo aceptáis como método de pago?","Estimado/a cliente,
-Nos complace informar que Bizum está aceptado como método de pago en TechPyme.
+2026-04-24 18:57:49,3,pedro@email.com,Problema técnico con router,"Buenas tardes, compré este router en Amazon hace un mes y no logro configurarlo. ¿Me podéis dar soporte técnico?","Estimado cliente,
+
+Lo sentimos que estés experimentando problemas con el router. Para soporte técnico, por favor, contacta con soporte@techpyme.es con el número de pedido y una descripción del problema.
+
 Atentamente,
 El equipo de atención al cliente de TechPyme
 📧 soporte@techpyme.es | 🕘 Lunes a viernes, 9:00 – 18:00 h"
