@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividad: Agente de Triaje de Emails - TechPyme</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -34,6 +35,12 @@
         .code-container::-webkit-scrollbar-thumb {
             background: #475569;
             border-radius: 10px;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
         }
 
         /* Agent Pulse Animation */
@@ -200,8 +207,13 @@
 
             try {
                 const response = await fetch(url);
-                const html = await response.text();
-                contentDiv.innerHTML = html;
+                if (!response.ok) throw new Error('Network response was not ok');
+                const text = await response.text();
+                if (url.endsWith('.md')) {
+                    contentDiv.innerHTML = '<div class="prose max-w-none text-left">' + marked.parse(text) + '</div>';
+                } else {
+                    contentDiv.innerHTML = text;
+                }
             } catch (error) {
                 contentDiv.innerHTML = '<p class="text-red-500 font-bold p-10 text-center">Error cargando el contenido. Asegúrate de estar usando un Live Server (http://) y no abriendo el archivo como file://.</p>';
             }

@@ -61,11 +61,8 @@
     <!-- Hero Section -->
     <header class="pt-20 pb-16 px-6 border-b border-slate-200 bg-white">
         <div class="w-full max-w-7xl mx-auto text-center">
-            <span
-                class="px-4 py-1.5 rounded-full bg-indigo-50 text-indigo-600 text-sm font-bold tracking-wider uppercase mb-6 inline-block">Fundamentos
-                de RAG</span>
-            <h1 class="text-5xl md:text-6xl font-black mb-6 tracking-tight">Estrategias de <span
-                    class="gradient-text">Chunking</span></h1>
+            <h1 class="text-5xl md:text-6xl font-black mb-6 tracking-tight">Chunking <span
+                    class="gradient-text">&nbsp(Fragmetación)</span></h1>
             <p class="text-xl text-slate-600 max-w-2xl mx-auto">
                 Cómo dividir documentos extensos para que tu IA recupere la información exacta sin perder el contexto.
             </p>
@@ -91,12 +88,14 @@
                 </h2>
                 <div class="space-y-4 text-slate-600">
                     <p>
-                        En un sistema RAG, no podemos inyectar un libro entero en el prompt de una vez. El <strong>Chunking</strong>
+                        En un sistema RAG, no podemos inyectar un libro entero en el prompt de una vez. El
+                        <strong>Chunking</strong>
                         es el proceso de dividir un documento en fragmentos más pequeños y manejables.
                     </p>
                     <p>
                         Estos fragmentos se convierten en vectores (embeddings) y se almacenan en una base de datos.
-                        Cuando el usuario pregunta algo, el sistema busca los <strong>chunks</strong> más relevantes semánticamente.
+                        Cuando el usuario pregunta algo, el sistema busca los <strong>chunks</strong> más relevantes
+                        semánticamente.
                     </p>
                 </div>
             </div>
@@ -132,7 +131,140 @@
             </div>
         </section>
 
-        <!-- Section 2: Overlap Visual -->
+        <!-- Section 2: Estrategias de Chunking -->
+        <section>
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold mb-4">Estrategias de Chunking</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+
+                <!-- Método 1: Fixed-size Chunking -->
+                <div
+                    class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="p-6 border-b border-slate-100 bg-slate-50">
+                        <h4 class="font-bold text-indigo-600">1. Chunking de Tamaño Fijo (Fixed-size Chunking)</h4>
+                        <p class="text-xs text-slate-500 mt-1">Es el método más básico. Se define un número exacto de
+                            caracteres o tokens por fragmento.</p>
+                    </div>
+                    <div class="bg-white p-6 bg-slate-900 overflow-x-auto code-font">
+                        <div class="text-xs text-slate-500 mt-2">
+                            <ul class="list-disc ml-5 space-y-1">
+                                <li><strong>Cómo funciona:</strong> Si decides fragmentos de 500 caracteres, el sistema
+                                    corta cada 500.</li>
+                                <li><strong>Pros:</strong> Muy rápido y computacionalmente barato.</li>
+                                <li><strong>Contras:</strong> Puede cortar una frase o una palabra por la mitad,
+                                    perdiendo el sentido completo.</li>
+                                <li><strong>Solución:</strong> Se suele usar un overlap (solapamiento), donde el final
+                                    del fragmento 1 se repite al inicio del fragmento 2 para mantener el contexto.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Método 2: Recursive Character Splitting -->
+                <div
+                    class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="p-6 border-b border-slate-100 bg-slate-50">
+                        <h4 class="font-bold text-indigo-600">2. Fragmentación Recursiva (Recursive Character Splitting)
+                        </h4>
+                        <p class="text-xs text-slate-500 mt-1">Es el estándar actual para documentos de texto plano
+                            (usado por herramientas como LangChain).</p>
+                    </div>
+                    <div class="bg-white p-6 bg-slate-900 overflow-x-aut code-font">
+                        <div class="text-xs text-slate-500 mt-2">
+                            <ul class="list-disc ml-5 space-y-1">
+                                <li><strong>Cómo funciona:</strong> Intenta dividir el texto por jerarquía de
+                                    separadores: primero busca párrafos (\n\n), luego saltos de línea (\n), luego
+                                    espacios entre palabras ( ), y finalmente caracteres individuales si es necesario.
+                                </li>
+                                <li><strong>Objetivo:</strong> Mantener los párrafos y oraciones unidos tanto como sea
+                                    posible dentro del límite de tamaño definido.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Método 3: Structure-aware -->
+                <div
+                    class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="p-6 border-b border-slate-100 bg-slate-50">
+                        <h4 class="font-bold text-indigo-600">
+                            3. Chunking Basado en Documentos (Structure-aware)
+                        </h4>
+                        <p class="text-xs text-slate-500 mt-1">
+                            Este método respeta la estructura lógica del archivo original.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 bg-slate-900 overflow-x-aut code-font">
+                        <div class="text-xs text-slate-500 mt-2">
+                            <ul class="list-disc ml-5 space-y-1">
+                                <li>
+                                    <strong>Markdown:</strong>
+                                    Divide por encabezados (#, ##, ###).
+                                </li>
+                                <li>
+                                    <strong>HTML:</strong>
+                                    Divide por etiquetas de sección o artículos (<code>&lt;section&gt;</code>,
+                                    <code>&lt;article&gt;</code>).
+                                </li>
+                                <li>
+                                    <strong>Código:</strong>
+                                    Divide por funciones o clases.
+                                </li>
+                                <li>
+                                    <strong>Tablas:</strong>
+                                    Requiere un tratamiento especial para no perder la relación entre filas y columnas.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Método 4: Semantic Chunking -->
+                <div
+                    class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="p-6 border-b border-slate-100 bg-slate-50">
+                        <h4 class="font-bold text-indigo-600">
+                            4. Chunking Semántico (Semantic Chunking)
+                        </h4>
+                        <p class="text-xs text-slate-500 mt-1">
+                            Es el método más avanzado y reciente. Divide el texto basándose en el significado
+                            (semántica)
+                            en lugar de la estructura.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 bg-slate-900 overflow-x-aut code-font">
+                        <div class="text-xs text-slate-500 mt-2">
+                            <ul class="list-disc ml-5 space-y-1">
+                                <li>
+                                    <strong>Cómo funciona:</strong>
+                                    Utiliza modelos de embeddings (vectores) para detectar cambios de tema en el texto.
+                                    Busca dónde se "distancia" semánticamente el contenido y corta ahí.
+                                </li>
+                                <li>
+                                    <strong>Ventaja:</strong>
+                                    Evita cortar frases a la mitad porque no corta en cualquier lugar, sino donde cambia
+                                    el contexto.
+                                </li>
+                                <li>
+                                    <strong>Desventaja:</strong>
+                                    Es computacionalmente más costoso que los métodos anteriores.
+                                </li>
+                                <li>
+                                    <strong>Uso:</strong>
+                                    Ideal para documentos técnicos complejos o textos donde la estructura no sigue
+                                    reglas
+                                    claras (ej. transcripciones de reuniones).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Overlap Visual -->
         <section class="space-y-12">
             <div class="text-center">
                 <h2 class="text-3xl font-bold mb-4">El Secreto: El Overlap (Solapamiento)</h2>
@@ -182,59 +314,6 @@
             </div>
         </section>
 
-        <!-- Section 3: Implementación en Python -->
-        <section>
-            <div class="mb-10">
-                <h2 class="text-3xl font-bold mb-4">Implementación en Python</h2>
-                <p class="text-slate-600">Usando <strong>LangChain</strong>, la biblioteca estándar para orquestación de
-                    LLMs.</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Método 1: Character Splitter -->
-                <div
-                    class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="p-6 border-b border-slate-100 bg-slate-50">
-                        <h4 class="font-bold text-indigo-600">1. Character Splitter</h4>
-                        <p class="text-xs text-slate-500 mt-1">El método más simple: corta cada X caracteres.</p>
-                    </div>
-                    <div class="p-6 bg-slate-900 overflow-x-auto code-font">
-                        <pre class="text-sm text-indigo-300"><code>from langchain.text_splitter import CharacterTextSplitter
-
-splitter = CharacterTextSplitter(
-    separator="\n\n",
-    chunk_size=1000,
-    chunk_overlap=200,
-    length_function=len,
-)
-
-chunks = splitter.split_text(doc_completo)</code></pre>
-                    </div>
-                </div>
-
-                <!-- Método 2: Recursive Character Splitter -->
-                <div
-                    class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="p-6 border-b border-slate-100 bg-slate-50">
-                        <h4 class="font-bold text-purple-600">2. Recursive Splitter (Recomendado)</h4>
-                        <p class="text-xs text-slate-500 mt-1">Intenta mantener párrafos y frases unidas.</p>
-                    </div>
-                    <div class="p-6 bg-slate-900 overflow-x-auto code-font">
-                        <pre class="text-sm text-purple-300"><code>from langchain.text_splitter import RecursiveCharacterTextSplitter
-
-splitter = RecursiveCharacterTextSplitter(
-    # Lista de separadores por prioridad
-    separators=["\n\n", "\n", " ", ""],
-    chunk_size=1000,
-    chunk_overlap=200
-)
-
-docs = splitter.create_documents([text])</code></pre>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Section 4: Tips -->
         <section class="bg-indigo-600 rounded-[3rem] p-12 text-white shadow-2xl relative overflow-hidden">
             <div class="absolute right-0 top-0 p-8 opacity-10">
@@ -253,13 +332,17 @@ docs = splitter.create_documents([text])</code></pre>
                         </div>
                         <h4 class="font-bold text-xl">¿Tamaño?</h4>
                         <ul class="text-indigo-100 text-sm leading-relaxed list-disc pl-5 space-y-1">
-                            <li><strong>FAQs:</strong> 128 to 256 tokens (matches question-answer pairs naturally)</li>
-                            <li><strong>Technical docs:</strong> 300 to 500 tokens (preserves step-by-step procedures)
+                            <li><strong>FAQs:</strong> 128 a 256 tokens (coincide naturalmente con pares de
+                                pregunta-respuesta)</li>
+                            <li><strong>Documentos técnicos:</strong> 300 a 500 tokens (preserva los procedimientos paso
+                                a paso)
                             </li>
-                            <li><strong>Research papers:</strong> 512 to 1024 tokens (maintains complex arguments)</li>
-                            <li><strong>Legal documents:</strong> 600 to 1000 tokens (keeps clause integrity)</li>
-                            <li><strong>Code documentation:</strong> 200 to 400 tokens (aligns with function-level
-                                context)</li>
+                            <li><strong>Artículos de investigación:</strong> 512 a 1024 tokens (mantiene argumentos
+                                complejos)</li>
+                            <li><strong>Documentos legales:</strong> 600 a 1000 tokens (conserva la integridad de las
+                                cláusulas)</li>
+                            <li><strong>Documentación de código:</strong> 200 a 400 tokens (se alinea con el contexto a
+                                nivel de función)</li>
                         </ul>
                     </div>
                     <div class="space-y-3">

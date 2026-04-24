@@ -1,6 +1,8 @@
+# =======================================================
 # rag.py
 # Construcción de la Base de Conocimiento RAG — TechPyme
 # =======================================================
+
 
 """
 Lee un fichero de texto (FAQs), lo divide en fragmentos, los vectoriza con un
@@ -66,8 +68,8 @@ def cargar_documento(ruta_fichero):
 # Fragmentar el texto en chunks
 def chunking_text(documentos):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=300,    # Cada fragmento tendrá ~300 caracteres
-        chunk_overlap=60,  # Solapamos 60 caracteres para no perder contexto
+        chunk_size=300,    # Cada fragmento tendrá ~300 chunks
+        chunk_overlap=60,  # Solapamos 60 chunks para no perder contexto
         length_function=len,
         separators=["\n\n", "\n", ". ", " ", ""]  # Prioridad de separación
     )
@@ -80,8 +82,8 @@ def chunking_text(documentos):
 
 # Cargar el modelo de Embeddings
 def load_embeddings_model(model_name):
-    if model_name is None:
-        model_name = "paraphrase-multilingual-MiniLM-L12-v2"
+#    if model_name is None:
+#       model_name = "paraphrase-multilingual-MiniLM-L12-v2"
 
     print("Cargando el modelo de Embeddings (puede tardar en la primera ejecución)...")
     print(f"Modelo: {model_name}")
