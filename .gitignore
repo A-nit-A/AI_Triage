@@ -19,6 +19,7 @@ build/
 
 # ── Archivos generados por el agente ─────────────────────────────────────────
 correos_escalados.csv
+correos_respondidos.csv
 
 # ── Modelos de HuggingFace (caché local, pueden ser muy grandes) ─────────────
 ~/.cache/huggingface/
