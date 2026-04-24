@@ -167,11 +167,11 @@
             class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
             <div>
                 <div class="font-bold text-white text-lg mb-1">IES de Teis</div>
-                <p class="text-xs text-slate-500 uppercase tracking-widest">Curso especialización en Inteligencia
-                    Artificial y Big Data - Módulo profesional: Programación de inteligencia artificial.</p>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Departamento de Informática</p>
             </div>
             <div class="text-sm">
-                Material educativo para alumnos del curso práctico.
+                <p>Curso especialización en Inteligencia Artificial y Big Data</p>
+                <p>Módulo profesional: Programación de inteligencia artificial</p>
             </div>
         </div>
     </footer>
@@ -244,6 +244,7 @@
                 mainContent.innerHTML = '<div class="flex justify-center py-20"><div class="animate-spin rounded-full h-10 w-10 border-b-4 border-indigo-600"></div></div>';
 
                 try {
+                    console.log(`docs/web/${id}.html`);
                     const response = await fetch(`docs/web/${id}.html`);
                     if (!response.ok) throw new Error('Network response was not ok');
                     const html = await response.text();

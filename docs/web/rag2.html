@@ -1,183 +1,165 @@
-        <!-- SECCIÓN: RAG 2.0 -->
-        <div id="section-rag2" class="content-section hidden animate-fade-in space-y-12">
-            <header class="bg-indigo-50 border border-indigo-100 p-10 rounded-3xl relative overflow-hidden">
-                <div class="relative z-10">
-                    <span
-                        class="bg-indigo-600 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4 inline-block">Concepto
-                        Avanzado</span>
-                    <h2 class="text-4xl font-black text-indigo-900 mb-4">Arquitectura RAG 2.0</h2>
-                    <p class="text-slate-600 max-w-2xl leading-relaxed">
-                        Más allá de la simple recuperación, el <strong>RAG Agéntico</strong> permite que el sistema
-                        razone sobre la
-                        calidad del contexto, corrija sus errores y decida dinámicamente qué herramienta usar.
-                    </p>
-                </div>
-                <svg class="absolute right-[-10%] bottom-[-20%] text-indigo-200/40 w-96 h-96" viewBox="0 0 24 24"
-                    fill="currentColor">
+<!-- SECCIÓN: RAG 2.0 -->
+<div id="section-rag2" class="content-section animate-fade-in space-y-12">
+
+    <div class="bg-indigo-50 border border-indigo-100 p-10 rounded-3xl relative overflow-hidden">
+        <div class="relative z-10">
+            <span
+                class="bg-indigo-600 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4 inline-block">Concepto
+                Avanzado</span>
+            <h2 class="text-4xl font-black text-indigo-900 mb-4">Arquitectura RAG 2.0</h2>
+            <p class="text-slate-600 max-w-2xl leading-relaxed">
+                Más allá de la simple recuperación, el <strong>RAG Agéntico</strong> permite que el sistema
+                razone sobre la
+                calidad del contexto, corrija sus errores y decida dinámicamente qué herramienta usar.
+            </p>
+        </div>
+        <svg class="absolute right-[-10%] bottom-[-20%] text-indigo-200/40 w-96 h-96" viewBox="0 0 24 24"
+            fill="currentColor">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+    </div>
+
+    <!-- Comparativa Visual -->
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-slate-400 uppercase text-xs tracking-widest mb-6 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span> RAG 1.0 (Lineal)
+            </h3>
+            <ul class="space-y-4">
+                <li class="flex items-start gap-3 text-sm text-slate-600">
+                    <svg class="w-5 h-5 text-red-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Confianza ciega en la primera búsqueda vectorial.
+                </li>
+                <li class="flex items-start gap-3 text-sm text-slate-600">
+                    <svg class="w-5 h-5 text-red-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Propenso a alucinaciones si el contexto es pobre.
+                </li>
+                <li class="flex items-start gap-3 text-sm text-slate-600">
+                    <svg class="w-5 h-5 text-red-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    No entiende preguntas complejas o ambiguas.
+                </li>
+            </ul>
+        </div>
+        <div class="bg-indigo-900 p-6 rounded-2xl shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10">
+                <svg class="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
-            </header>
-
-            <!-- Comparativa Visual -->
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                    <h3 class="font-bold text-slate-400 uppercase text-xs tracking-widest mb-6 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-slate-300"></span> RAG 1.0 (Lineal)
-                    </h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3 text-sm text-slate-600">
-                            <svg class="w-5 h-5 text-red-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            Confianza ciega en la primera búsqueda vectorial.
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-slate-600">
-                            <svg class="w-5 h-5 text-red-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            Propenso a alucinaciones si el contexto es pobre.
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-slate-600">
-                            <svg class="w-5 h-5 text-red-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            No entiende preguntas complejas o ambiguas.
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-indigo-900 p-6 rounded-2xl shadow-xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10">
-                        <svg class="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                        </svg>
-                    </div>
-                    <h3
-                        class="font-bold text-indigo-300 uppercase text-xs tracking-widest mb-6 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span> RAG 2.0 (Agéntico)
-                    </h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3 text-sm text-indigo-100 font-medium">
-                            <svg class="w-5 h-5 text-indigo-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Crítica y evaluación de la relevancia del contexto.
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-indigo-100 font-medium">
-                            <svg class="w-5 h-5 text-indigo-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Reescritura inteligente de consultas (Query Translation).
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-indigo-100 font-medium">
-                            <svg class="w-5 h-5 text-indigo-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Combinación de búsqueda semántica y de palabras clave.
-                        </li>
-                    </ul>
-                </div>
             </div>
+            <h3 class="font-bold text-indigo-300 uppercase text-xs tracking-widest mb-6 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span> RAG 2.0 (Agéntico)
+            </h3>
+            <ul class="space-y-4">
+                <li class="flex items-start gap-3 text-sm text-indigo-100 font-medium">
+                    <svg class="w-5 h-5 text-indigo-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Crítica y evaluación de la relevancia del contexto.
+                </li>
+                <li class="flex items-start gap-3 text-sm text-indigo-100 font-medium">
+                    <svg class="w-5 h-5 text-indigo-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Reescritura inteligente de consultas (Query Translation).
+                </li>
+                <li class="flex items-start gap-3 text-sm text-indigo-100 font-medium">
+                    <svg class="w-5 h-5 text-indigo-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Combinación de búsqueda semántica y de palabras clave.
+                </li>
+            </ul>
+        </div>
+    </div>
 
-            <!-- Los 4 Pilares con Código -->
-            <div class="space-y-8">
-                <h3 class="text-2xl font-bold text-slate-800 text-center">Componentes del Agente RAG</h3>
+    <!-- Los 4 Pilares con Código -->
+    <div class="space-y-8">
+        <h3 class="text-2xl font-bold text-slate-800 text-center">Componentes del Agente RAG</h3>
 
-                <div class="grid lg:grid-cols-2 gap-10 items-center">
-                    <div class="space-y-4">
-                        <div
-                            class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center shadow-sm">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900">1. Re-escritura (Query Translation)</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            El usuario pregunta: *"¿Mi paquete?"*. El agente traduce: *"¿Cuál es la política de tiempos
-                            de entrega y estado de envíos?"*. Esto optimiza radicalmente la precisión de ChromaDB.
-                        </p>
-                    </div>
-                    <div
-                        class="bg-slate-900 rounded-xl p-6 shadow-xl border border-slate-700 code-container overflow-x-auto">
-                        <pre class="text-[11px] leading-relaxed font-mono text-indigo-300"><code># Generar versiones optimizadas para búsqueda
-template = "Reescribe esta pregunta para búsqueda vectorial: {pregunta}"
-rewrite_chain = PromptTemplate(template) | llm | StrOutputParser()
-
-queries = rewrite_chain.invoke("¿Cuánto tardan?")</code></pre>
-                    </div>
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="space-y-4">
+                <div
+                    class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
                 </div>
-
-                <div class="grid lg:grid-cols-2 gap-10 items-center">
-                    <div
-                        class="bg-slate-900 rounded-xl p-6 shadow-xl border border-slate-700 order-2 lg:order-1 code-container overflow-x-auto">
-                        <pre class="text-[11px] leading-relaxed font-mono text-emerald-300"><code># Evaluación de Relevancia (Self-RAG)
-def check_relevance(pregunta, contexto):
-    score = grader_llm.invoke(f"Q: {pregunta}, C: {contexto}")
-    if score == 'irrelevante':
-        return rewrite_and_retry() 
-    return generate_answer()</code></pre>
-                    </div>
-                    <div class="space-y-4 order-1 lg:order-2">
-                        <div
-                            class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center shadow-sm">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900">2. Auto-Grader (Verificación)</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Un LLM secundario actúa como "juez", analizando si los fragmentos recuperados realmente
-                            sirven para responder. Si no sirven, el agente no inventa; vuelve a buscar o escala.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="grid lg:grid-cols-2 gap-10 items-center">
-                    <div class="space-y-4">
-                        <div
-                            class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shadow-sm">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900">3. Recuperación Híbrida</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Combina lo mejor de dos mundos: Vectores (significado) + BM25 (exactitud). Crucial para
-                            encontrar códigos de error o nombres de productos específicos.
-                        </p>
-                    </div>
-                    <div
-                        class="bg-slate-900 rounded-xl p-6 shadow-xl border border-slate-700 code-container overflow-x-auto">
-                        <pre class="text-[11px] leading-relaxed font-mono text-blue-300"><code># Ensemble Retriever (LangChain)
-hybrid_retriever = EnsembleRetriever(
-    retrievers=[chroma_retriever, bm25_retriever],
-    weights=[0.7, 0.3] # Prioriza semántica pero usa exactitud
-)</code></pre>
-                    </div>
-                </div>
+                <h4 class="text-xl font-bold text-slate-900">1. Re-escritura (Query Translation)</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    El usuario pregunta: *"¿Mi paquete?"*. El agente traduce: *"¿Cuál es la política de tiempos
+                    de entrega y estado de envíos?"*. Esto optimiza radicalmente la precisión de ChromaDB.
+                </p>
             </div>
+            <div class="bg-slate-900 rounded-xl p-6 shadow-xl border border-slate-700 code-container overflow-x-auto">
+                <pre class="text-[11px] leading-relaxed font-mono text-indigo-300"><code># Generar versiones optimizadas para búsqueda
+    template = "Reescribe esta pregunta para búsqueda vectorial: {pregunta}"
+    rewrite_chain = PromptTemplate(template) | llm | StrOutputParser()
 
-            <!-- Botón Final de Acción -->
-            <div class="bg-white border-2 border-dashed border-indigo-200 p-10 rounded-3xl text-center">
-                <h4 class="text-xl font-bold text-indigo-900 mb-2">¿Listo para el desafío final?</h4>
-                <p class="text-slate-500 mb-6 text-sm">Implementa un bucle de reintento en tu Agente de Triaje para que
-                    sea 100% fiable.</p>
-                <button onclick="showSection('agente')"
-                    class="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-indigo-700 transition transform hover:scale-105">
-                    Volver a Programación
-                </button>
+    queries = rewrite_chain.invoke("¿Cuánto tardan?")</code></pre>
             </div>
         </div>
 
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div
+                class="bg-slate-900 rounded-xl p-6 shadow-xl border border-slate-700 order-2 lg:order-1 code-container overflow-x-auto">
+                <pre class="text-[11px] leading-relaxed font-mono text-emerald-300"><code># Evaluación de Relevancia (Self-RAG)
+    def check_relevance(pregunta, contexto):
+    score = grader_llm.invoke(f"Q: {pregunta}, C: {contexto}")
+    if score == 'irrelevante':
+    return rewrite_and_retry() 
+    return generate_answer()</code></pre>
+            </div>
+            <div class="space-y-4 order-1 lg:order-2">
+                <div
+                    class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h4 class="text-xl font-bold text-slate-900">2. Auto-Grader (Verificación)</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Un LLM secundario actúa como "juez", analizando si los fragmentos recuperados realmente
+                    sirven para responder. Si no sirven, el agente no inventa; vuelve a buscar o escala.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="space-y-4">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <h4 class="text-xl font-bold text-slate-900">3. Recuperación Híbrida</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Combina lo mejor de dos mundos: Vectores (significado) + BM25 (exactitud). Crucial para
+                    encontrar códigos de error o nombres de productos específicos.
+                </p>
+            </div>
+            <div class="bg-slate-900 rounded-xl p-6 shadow-xl border border-slate-700 code-container overflow-x-auto">
+                <pre class="text-[11px] leading-relaxed font-mono text-blue-300"><code># Ensemble Retriever (LangChain)
+    hybrid_retriever = EnsembleRetriever(
+    retrievers=[chroma_retriever, bm25_retriever],
+    weights=[0.7, 0.3] # Prioriza semántica pero usa exactitud
+    )</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
